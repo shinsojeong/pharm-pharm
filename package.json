@@ -1,0 +1,51 @@
+{
+  "name": "pharm-pharm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "webpack serve --config webpack.config.js --mode development",
+    "server": "nodemon ./server/app.js --ignore sessions/*",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinsojeong/pharm-pharm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shinsojeong/pharm-pharm/issues"
+  },
+  "homepage": "https://github.com/shinsojeong/pharm-pharm#readme",
+  "dependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "babel-loader": "^8.2.2",
+    "concurrently": "^6.2.2",
+    "connect-redis": "^6.0.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "html-webpack-plugin": "^5.3.2",
+    "morgan": "^1.10.0",
+    "passport": "^0.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "redis": "^3.1.2",
+    "webpack": "^5.54.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.3.0"
+  },
+  "devDependencies": {
+    "babel-node": "0.0.1-security",
+    "nodemon": "^2.0.13",
+    "typescript": "^4.4.3"
+  }
+}
