@@ -19,11 +19,12 @@ module.exports = {
     ]
   },
   devServer: {
-    port: 3000,
+    port: 3030,
     open: true,
     proxy: {
       "/api": "http://localhost:8080"
-    }
+    },
+    historyApiFallback: true
   },
   resolve: {
     extensions: ['*', '.js', '.jsx','.ts','.tsx']

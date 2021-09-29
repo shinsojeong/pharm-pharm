@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import * as ReactDOM from "react-dom";
 
 import { Provider } from 'react-redux';
@@ -11,7 +11,7 @@ import { persistStore } from 'redux-persist';
 
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import ReduxThunk from "redux-thunk";
+import ReduxThunk from 'redux-thunk';
 
 const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(ReduxThunk)));
 const persistor = persistStore(store);

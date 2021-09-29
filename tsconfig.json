@@ -2,12 +2,13 @@
     "compilerOptions": {
         "outDir": "./dist/",
         "sourceMap": true,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "module": "commonjs",
         "target": "es6",
         "jsx": "react"
     },
     "include": [
         "./src/**/*"
-    ]
+    ],
+    "typeRoots" : ["./@types", "./node_modules/@types"]
 }
