@@ -1,0 +1,28 @@
+{
+  "icons": [
+    {
+      "src": "images/192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Pharm-pharm",
+      "short_name": "팜팜",
+      "description": "Pharm-pharm",
+      "url": "./",
+      "icons": [{ "src": "images/192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "ffaa31",
+  "background_color": "ffaa31"
+}
