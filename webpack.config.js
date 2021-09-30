@@ -15,11 +15,25 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use: ["file-loader"],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader"
+        ],
+        exclude: /node_modules/
       }
     ]
   },
   devServer: {
-    port: 3030,
+    port: 3000,
     open: true,
     proxy: {
       "/api": "http://localhost:8080"

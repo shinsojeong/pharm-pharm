@@ -8,6 +8,7 @@
     "server": "nodemon ./server/app.js --ignore sessions/*",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
+  "proxy": "http://localhost:8080/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shinsojeong/pharm-pharm.git"
@@ -28,12 +29,19 @@
     "connect-redis": "^6.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "css-loader": "^6.3.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "file-loader": "^6.2.0",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
     "html-webpack-plugin": "^5.3.2",
     "morgan": "^1.10.0",
+    "mysql2": "^2.3.0",
+    "node-sass": "^6.0.1",
     "passport": "^0.5.0",
+    "passport-kakao": "^1.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
@@ -41,11 +49,15 @@
     "redis": "^3.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "sass-loader": "^12.1.0",
+    "sequelize": "^6.6.5",
+    "style-loader": "^3.3.0",
     "webpack": "^5.54.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "@types/react-redux": "^7.1.18",
