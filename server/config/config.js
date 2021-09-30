@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 dotenv.config();
 const env = process.env;
 
@@ -26,4 +26,4 @@ const test = {
   dialect: "mysql"
 };
 
-export { development, production, test };
+module.exports = { development, production, test };

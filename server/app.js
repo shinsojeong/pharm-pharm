@@ -1,10 +1,81 @@
-const express = require("express");
- 
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
+const redis = require('redis');
+const connectRedis = require('connect-redis');
+const session = require('express-session');
+const dotenv = require('dotenv');
+const passport = require('passport');
+const cors = require('cors');
+const helmet = require('helmet');
+const hpp = require('hpp');
+
+const authRouter = require('./routes/auth.js');
+const scheduleRouter = require('./routes/schedule.js');
+
+const db = require('./models/index.js');
+const passportConfig = require('./passport/index.js');
+
+
+dotenv.config();
 const app = express();
- 
-app.use(express.static("dist"));
- 
-app.get("/api/getUsername", (req, res) =>
-  res.send("Hi!")
-);
-app.listen(8080, () => console.log("Listening on port 8080!"));
+passportConfig(); //passport 설정
+app.set("port", process.env.PORT || 8080);
+
+//sequelize 연동
+db.sequelize.sync({ force : false })  //true:실행 시마다 테이블 재생성
+.then(() => {
+  console.log("데이터베이스 연결 성공");
+})
+.catch((err) => {
+  console.log(err);
+});
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
+
+const redisClient = redis.createClient({
+  url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+  password: process.env.REDIS_PASSWORD
+});
+const redisStore = connectRedis(session);
+app.use(cookieParser(process.env.COOKIE_SECRET));
+const sessionOption = {
+  resave: false,
+  saveUninitialized: true,
+  secret: process.env.COOKIE_SECRET,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+  },
+  store: new redisStore({
+    client: redisClient
+  })
+}
+if(process.env.NODE_ENV==='production') {
+  app.use(morgan('combined'));
+  app.use(helmet());
+  app.use(hpp({ contentSecurityPolicy: false }));
+} else {
+  app.use(morgan('dev'));
+}
+app.use(session(sessionOption));
+app.use(passport.initialize());  //req 객체에 passport 설정 심는 middleware
+app.use(passport.session());  //req.session 객체에 passport 정보 저장하는 middleware
+
+app.use('/auth', authRouter);
+app.use('/schedule', scheduleRouter);
+
+app.use((err, req, res, next) => {
+  res.locals.message = err.message;
+  res.locals.error = process.env.NODE_ENV !== "production" ? err : {};
+  res.status(err.status || 500);
+})
+
+app.listen(app.get("port"), () => {
+  console.log(app.get("port"),'번 포트에서 대기 중');
+});
