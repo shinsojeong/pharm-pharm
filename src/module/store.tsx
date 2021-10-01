@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-//import
+import schedule from './schedule';
+import bar from './bar';
 
 const persistConfig = {
   key: 'root',
@@ -10,9 +11,11 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  //import
+  schedule, bar
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default persistedReducer;
+
+export type RootState = ReturnType<typeof rootReducer>;
