@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack-stream').webpack.ProvidePlugin;
 
 module.exports = {
   entry: [
@@ -7,8 +9,9 @@ module.exports = {
   output: {
     filename: "bundle.js",
     publicPath: "/",
-    path: __dirname + "/dist"
+    path: path.resolve() + "/dist"
   },
+  target: 'web',
   module: {
     rules: [
       {
@@ -22,7 +25,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         use: [
           "style-loader",
           "css-loader",
@@ -38,24 +41,30 @@ module.exports = {
     proxy: {
       "/api": "http://localhost:8080"
     },
+    hot: true,
     historyApiFallback: true
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx','.ts','.tsx']
+    extensions: ['*', '.js', '.jsx','.ts','.tsx'],
+    fallback: {
+      fs: false,
+      os: require.resolve("os-browserify"),
+      path: require.resolve("path-browserify")
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
       templateParameters: {
-        env: process.env.NODE_ENV === 'production' ? '' : '[DEV]',
+        env: ''
       },
-      minify:
-        process.env.NODE_ENV === 'production'
-          ? {
-              collapseWhitespace: true,
-              removeComments: true,
-            }
-          : false,
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+      }
     }),
+    new webpack({
+      process: 'process/browser'
+    })
   ],
 };

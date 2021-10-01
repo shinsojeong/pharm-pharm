@@ -1,14 +1,24 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": [
+      "es2015", "es6", "esnext", "dom"
+    ],
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "noImplicitAny": false,
     "outDir": "./dist/",
     "sourceMap": true,
-    "noImplicitAny": false,
-    "module": "commonjs",
     "target": "es6",
-    "jsx": "react",
-    "typeRoots" : ["./@types", "./node_modules/@types"]
   },
+  "typeRoots" : ["./node_modules/@types", "./@types"],
   "include": [
     "./src/**/*"
   ],
+  "exclude": [
+    "./node_modules/**/*"
+  ]
 }
