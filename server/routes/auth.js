@@ -8,7 +8,7 @@ router.get('/kakao', passport.authenticate('kakao'));
 router.get('/kakao/callback', passport.authenticate('kakao', {
   failureRedirect: '/http://localhost:3000/',
 }), (req, res) => {
-  res.redirect(`http://localhost:3000/home/${req.user.dataValues.user_num}`);
+  res.redirect(`http://localhost:3000/user/home`);
 })
 
 module.exports = router;
