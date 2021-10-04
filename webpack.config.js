@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack-stream').webpack.ProvidePlugin;
+const webpack = require('webpack');
+const dotenv = require('dotenv-webpack');
+const webpackProvidePlugin = require('webpack-stream').webpack.ProvidePlugin;
 
 module.exports = {
   entry: [
@@ -63,8 +65,9 @@ module.exports = {
         removeComments: true,
       }
     }),
-    new webpack({
+    new webpackProvidePlugin({
       process: 'process/browser'
-    })
+    }),
+    new dotenv()
   ],
 };
