@@ -108,19 +108,22 @@ router.get('/delete_schedule', isLoggedIn, async(req, res) => {
     
 });
 
-// 월별 복용 정보 리스트 가져오기
+// 선택 일자 복용 정보 리스트 가져오기
 router.get('/get_schedule_list', isLoggedIn, async(req, res) => {
-  const { user_num, year, month, last_day } = req.body;
+  const { year, month, day } = req.query;
+  const user_num = req.user.user_num;
+  const date = new Date(`${year}-${parseInt(month)+1}-${day}`);
 
   try {
     const sche = await Schedule.findAll({
+      attributes: ["sche_code", "medi_code", "medi_name", "medi_time", "medi_times", "medi_num"],
       where: {
         user: user_num,
-        madi_date1: {
-          [sequelize.Op.gte]: new Date(`${year}-${month}-01`)
+        medi_date1: {
+          [sequelize.Op.lte]: new Date(date)
         },
-        madi_date2: {
-          [sequelize.Op.lte]: new Date(`${year}-${month}-${last_day}`)
+        medi_date2: {
+          [sequelize.Op.gte]: new Date(date)
         }
       }
     })
@@ -146,14 +149,18 @@ router.get('/get_schedule_list', isLoggedIn, async(req, res) => {
 
 // 오늘의 복용 정보 가져오기
 router.get('/get_today_schedule', async(req, res) => {
-  const { user_num } = req.body;
+  const user_num = req.user.user_num;
   const today = new Date().toISOString().slice(0,10);
-console.log(today)
+  const searchDay = new Date().getDay();
+
   try {
     const sche = await Schedule.findAll({
-      attributes: ["*"],
+      attributes: ["sche_code", "medi_code", "medi_name", "medi_time", "medi_times", "medi_num"],
       where: {
         user: user_num,
+        medi_day: {
+          [sequelize.Op.like]: "%"+searchDay+"%"
+        },
         medi_date1: {
           [sequelize.Op.lte]: new Date(today)
         },
@@ -162,6 +169,7 @@ console.log(today)
         }
       }
     })
+
     if (sche) {
       return res.send({
         status: "OK",
