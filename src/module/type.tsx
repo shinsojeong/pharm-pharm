@@ -43,7 +43,10 @@ export interface scheduleInterface {
   medi_times?: number, 
   medi_num?: number,
   user_num?: number,
-  month?: number
+  year?: number,
+  month?: number,
+  day?: number,
+  last_day?: number
 }
 
 

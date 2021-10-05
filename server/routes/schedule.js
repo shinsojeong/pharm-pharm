@@ -43,7 +43,9 @@ router.post('/update_schedule', isLoggedIn, async(req, res) => {
     const sche = await Schedule.update({
       medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num
     }, {
-      where: sche_code
+      where: {
+        sche_code: sche_code
+      }
     })
     if (sche) {
       return res.send({
@@ -64,7 +66,10 @@ router.get('/get_schedule', isLoggedIn, async(req, res) => {
 
   try {
     const sche = await Schedule.findOne({
-      where: sche_code
+      attributes: ["sche_code", "medi_code", "medi_name", "medi_date1", "medi_date2", "medi_day", "medi_time", "medi_times", "medi_num"],
+      where: {
+        sche_code: sche_code
+      }
     })
     if (sche) {
       return res.send({
@@ -110,20 +115,31 @@ router.get('/delete_schedule', isLoggedIn, async(req, res) => {
 
 // 선택 일자 복용 정보 리스트 가져오기
 router.get('/get_schedule_list', isLoggedIn, async(req, res) => {
-  const { year, month, day } = req.query;
+  let { year, month, day } = req.query;
+  if (month.length === 1) {
+    month = "0"+month;
+  }
+  if (day.length === 1) {
+    day = "0"+day;
+  }
+  console.log(year+month+day)
   const user_num = req.user.user_num;
-  const date = new Date(`${year}-${parseInt(month)+1}-${day}`);
+  let date = new Date(`${year}-${month}-${day} 09:00:00`);
+  const searchDay = date.getDay();
 
   try {
     const sche = await Schedule.findAll({
       attributes: ["sche_code", "medi_code", "medi_name", "medi_time", "medi_times", "medi_num"],
       where: {
         user: user_num,
+        medi_day: {
+          [sequelize.Op.like]: "%"+searchDay+"%"
+        },
         medi_date1: {
-          [sequelize.Op.lte]: new Date(date)
+          [sequelize.Op.lte]: date
         },
         medi_date2: {
-          [sequelize.Op.gte]: new Date(date)
+          [sequelize.Op.gte]: date
         }
       }
     })

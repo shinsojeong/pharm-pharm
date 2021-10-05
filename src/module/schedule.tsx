@@ -1,6 +1,6 @@
 import axios from 'axios';
-import * as dotenv from 'dotenv';
-dotenv.config({path: '../../.env'});
+import dotenv from 'dotenv';
+dotenv.config();
 import { Dispatch } from "redux";
 import {  //action type
   CREATESCHEDULE,
@@ -24,8 +24,8 @@ const url = process.env.REACT_APP_SERVER;
 
 //type
 type initType = {
-  calendar: [],
-  today_schedule: [],
+  calendar: any,
+  today_schedule: any,
   selected_schedule: scheduleInterface
 }
 type actionType =
@@ -73,7 +73,7 @@ export const createSchedule = (
     withCredentials: true 
   })
   .then((res) => {
-    if(res.data.code===200) {
+    if (res.data.code === 200) {
       dispatch({
         type: CREATESCHEDULE
       });
@@ -102,7 +102,7 @@ export const updateSchedule = (
     withCredentials: true 
   })
   .then((res) => {
-    if(res.data.code===200) {
+    if (res.data.code === 200) {
       dispatch({
         type: UPDATESCHEDULE,
         payload: {
@@ -125,7 +125,7 @@ export const updateSchedule = (
 
 //복용 일정 삭제
 export const deleteSchedule = (
-  sche_code: scheduleInterface
+  sche_code: scheduleInterface["sche_code"]
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
   .post(`${url}/schedule/delete_schedule`, {
@@ -134,7 +134,7 @@ export const deleteSchedule = (
     withCredentials: true 
   })
   .then((res) => {
-    if(res.data.code===200) {
+    if (res.data.code === 200) {
       dispatch({
         type: DELETESCHEDULE
       });
@@ -146,66 +146,65 @@ export const deleteSchedule = (
 
 //복용 일정 세부 가져오기
 export const getSchedule = (
-  sche_code: scheduleInterface
+  sche_code: scheduleInterface["sche_code"]
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
-  .post(`${url}/schedule/get_schedule`, {
-    sche_code
-  }, { 
-    withCredentials: true 
-  })
+  .get(`${url}/schedule/get_schedule?sche_code=${sche_code}`,
+    { 
+      withCredentials: true 
+    }
+  )
   .then((res) => {
-    if(res.data.code===200) {
+    if (res.data.code === 200) {
       dispatch({
         type: GETSCHEDULE,
         payload: res.data.data
       });
+    } else {
+      alert(res.data.message);
     }
-    alert(res.data.message);
   })
   .catch((err) => console.log(err));
 };
   
-//복용 일정 리스트 가져오기
+//선택 일자 복용 일정 가져오기
 export const getScheduleList = (
-  { user_num, month }: scheduleInterface
+  { year, month, day }: scheduleInterface
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
-  .post(`${url}/schedule/get_schedule_list`, {
-    user_num, month
-  }, { 
+  .get(`${url}/schedule/get_schedule_list?year=${year}&month=${month}&day=${day}`, 
+  { 
     withCredentials: true 
   })
   .then((res) => {
-    if(res.data.code===200) {
+    if (res.data.code === 200) {
       dispatch({
         type: GETSCHEDULELIST,
         payload: res.data.data
       });
+    } else{ 
+      alert(res.data.message);
     }
-    alert(res.data.message);
   })
   .catch((err) => console.log(err));
 };
 
 //오늘의 복용 일정 가져오기
-export const getTodaySchedule = (
-  user_num: scheduleInterface
-) => async(dispatch: Dispatch<actionType>) => {
+export const getTodaySchedule = () => async(dispatch: Dispatch<actionType>) => {
   await axios
-  .post(`${url}/schedule/get_today_schedule`, {
-    user_num
-  }, { 
+  .get(`${url}/schedule/get_today_schedule`,
+  { 
     withCredentials: true 
   })
   .then((res) => {
-    if(res.data.code===200) {
+    if (res.data.code === 200) {
       dispatch({
         type: GETTODAYSCHEDULE,
         payload: res.data.data
       });
+    } else {
+      alert(res.data.message);
     }
-    alert(res.data.message);
   })
   .catch((err) => console.log(err));
 };
