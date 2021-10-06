@@ -1,5 +1,54 @@
+@import './Valiables.scss';
+
 html, body, #root {
   margin: 0;
   padding: 0;
   top: 0;
+}
+
+.contents {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.modal {
+  width: 90vw;
+  height: 600px;
+  z-index: 2;
+  position: fixed;
+  top: 40px;
+  background-color: $white;
+  border: 1px solid $gray;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px $gray;
+  #title {
+    width: 100%;
+    color: $white;
+    text-align: center;
+    font-weight: bolder;
+    margin: 0px;
+    padding: 10px 0px;
+    background-color: $gray;
+    border-bottom: 1px solid $gray;
+    border-radius: 10px 10px 0 0;
+  }
+  #close {
+    width: 10%;
+    position: absolute;
+    top: 8px;
+    right: -10px;
+    color: $white;
+    font-weight: bolder;
+  }
+  .todayScheItem {
+    p {
+      padding-left: 10px;
+      margin: 5px 0;
+    }
+    width: 96%;
+    padding: 5px 0;
+    margin: 10px auto;
+    background-color: $white;
+    border-bottom: 1px solid $gray;
+  }
 }
