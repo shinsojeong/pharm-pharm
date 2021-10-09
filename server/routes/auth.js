@@ -11,4 +11,15 @@ router.get('/kakao/callback', passport.authenticate('kakao', {
   res.redirect(`http://localhost:3000/user/home`);
 })
 
+//카카오 로그아웃
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    req.logout();
+    res.send({
+      status: "OK",
+      code: 200
+    })
+  })
+})
+
 module.exports = router;
