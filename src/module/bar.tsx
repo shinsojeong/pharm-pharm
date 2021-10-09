@@ -1,10 +1,12 @@
 import {  //action type
   CHANGETOP,
-  CHANGENAV 
+  CHANGENAV,
+  RESETBAR
 } from './type';
 import {  //action interface
   topAction,
-  navAction
+  navAction,
+  barResetAction
 } from './type';
 import { topInterface, navInterface } from './type';
 
@@ -16,7 +18,8 @@ type initType = {
 }
 type actionType =
   | topAction
-  | navAction;
+  | navAction
+  | barResetAction;
 
 //initial state
 const INIT_BAR_STATE: initType = {
@@ -28,7 +31,7 @@ const INIT_BAR_STATE: initType = {
     rfunc: null
   },
   nav: {
-    selected: ""
+    selected: "home"
   }
 };
 
@@ -51,6 +54,11 @@ export const changeNav = (
   payload: selected
 });
 
+//로그아웃 시 bar 초기화
+export const resetBar = () => ({
+  type: RESETBAR
+});
+
 
 //reducer
 const bar = (state = INIT_BAR_STATE, action: actionType) => {
@@ -68,6 +76,8 @@ const bar = (state = INIT_BAR_STATE, action: actionType) => {
           selected: action.payload
         }
       }
+    case RESETBAR:
+      return INIT_BAR_STATE;
 
     default:
       return state;

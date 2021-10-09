@@ -6,6 +6,7 @@ export const DELETESCHEDULE = "DELETESCHEDULE" as const;
 export const GETSCHEDULE = "GETSCHEDULE" as const;
 export const GETSCHEDULELIST = "GETSCHEDULELIST" as const;
 export const GETTODAYSCHEDULE = "GETTODAYSCHEDULE" as const;
+export const RESETSCHEDULE = "RESETSCHEDULE" as const;
 
 //action interface
 export interface createAction {
@@ -31,6 +32,10 @@ export interface getTodayAction {
   payload: scheduleInterface
 }
 
+export interface resetScheduleAction {
+  type: typeof RESETSCHEDULE
+}
+
 //interface
 export interface scheduleInterface {
   sche_code?: string,
@@ -54,6 +59,7 @@ export interface scheduleInterface {
 //action type
 export const CHANGETOP = "CHANGETOP" as const;
 export const CHANGENAV = "CHANGENAV" as const;
+export const RESETBAR = "RESETBAR" as const;
 
 //action interface
 export interface topAction {
@@ -63,6 +69,9 @@ export interface topAction {
 export interface navAction {
   type: typeof CHANGENAV,
   payload: navInterface
+}
+export interface barResetAction {
+  type: typeof RESETBAR
 }
 
 //interface

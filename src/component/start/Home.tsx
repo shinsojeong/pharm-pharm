@@ -9,9 +9,11 @@ import { scheduleInterface } from '../../module/type';
 import ScheModal from '../schedule/ScheModal';
 import '../../style/Start.scss';
 import ScheMonthModal from '../schedule/ScheMonthModal';
+import { useHistory } from 'react-router-dom';
 
 export default function Home(): ReactElement {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [day, setDay] = useState(moment());
   const [modalState, setModalState] = useState(false);
@@ -85,7 +87,7 @@ export default function Home(): ReactElement {
   //오늘의 복용 정보 가져오기
   const getTodaySche = () => {
     dispatch(
-      getTodaySchedule()
+      getTodaySchedule(history)
     )
   };
 
@@ -98,11 +100,13 @@ export default function Home(): ReactElement {
     setSelectedDate(days.year()+"년 "+(days.month()+1)+"월 "+days.date()+"일");
     //선택 일자 복용 정보 가져오기
     dispatch(
-      getScheduleList({
-        year: days.year(), 
-        month: days.month()+1, 
-        day: days.date()
-      }
+      getScheduleList(
+        {
+          year: days.year(), 
+          month: days.month()+1, 
+          day: days.date()
+        }, 
+        history
     ))
     setMonthModalState(true);
   };

@@ -14,7 +14,7 @@ export default function ScheModal({ setModalState }): ReactElement {
   const today_schedule = useSelector((state: RootState) => state.schedule.today_schedule);
 
   const goDetail = (sche_code: string) => {
-    dispatch(getSchedule(sche_code));
+    dispatch(getSchedule(sche_code, history));
     history.push("/user/sche-detail");
   };
 

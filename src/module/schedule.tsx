@@ -2,13 +2,18 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 import { Dispatch } from "redux";
+
+const url = process.env.REACT_APP_SERVER;
+
+
 import {  //action type
   CREATESCHEDULE,
   UPDATESCHEDULE,
   DELETESCHEDULE,
   GETSCHEDULE,
   GETSCHEDULELIST,
-  GETTODAYSCHEDULE
+  GETTODAYSCHEDULE,
+  RESETSCHEDULE
 } from './type';
 import {  //action interface
   createAction,
@@ -16,11 +21,10 @@ import {  //action interface
   deleteAction,
   getAction,
   getListAction,
-  getTodayAction
+  getTodayAction,
+  resetScheduleAction
 } from './type';
 import { scheduleInterface } from './type';
-
-const url = process.env.REACT_APP_SERVER;
 
 //type
 type initType = {
@@ -34,7 +38,8 @@ type actionType =
   | deleteAction
   | getAction
   | getListAction
-  | getTodayAction;
+  | getTodayAction
+  | resetScheduleAction;
 
 //initial state
 const INIT_SCHEDULE_STATE: initType = {
@@ -56,7 +61,7 @@ const INIT_SCHEDULE_STATE: initType = {
 
 //복용 일정 생성
 export const createSchedule = (
-  { medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num, user_num }: scheduleInterface
+  { medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num, user_num }: scheduleInterface, history: any
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
   .post(`${url}/schedule/create_schedule`, {
@@ -73,19 +78,22 @@ export const createSchedule = (
     withCredentials: true 
   })
   .then((res) => {
+    alert(res.data.message);
     if (res.data.code === 200) {
       dispatch({
         type: CREATESCHEDULE
       });
     }
-    alert(res.data.message);
+    else if (res.data.code === 403) {
+      history.replace('/');
+    }
   })
   .catch((err) => console.log(err));
 };
 
 //복용 일정 수정
 export const updateSchedule = (
-  { sche_code, medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num }: scheduleInterface
+  { sche_code, medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num }: scheduleInterface, history: any
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
   .post(`${url}/schedule/update_schedule`, {
@@ -102,6 +110,7 @@ export const updateSchedule = (
     withCredentials: true 
   })
   .then((res) => {
+    alert(res.data.message);
     if (res.data.code === 200) {
       dispatch({
         type: UPDATESCHEDULE,
@@ -118,14 +127,16 @@ export const updateSchedule = (
         }
       });
     }
-    alert(res.data.message);
+    else if (res.data.code === 403) {
+      history.replace('/');
+    }
   })
   .catch((err) => console.log(err));
 };
 
 //복용 일정 삭제
 export const deleteSchedule = (
-  sche_code: scheduleInterface["sche_code"]
+  sche_code: scheduleInterface["sche_code"], history: any
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
   .post(`${url}/schedule/delete_schedule`, {
@@ -134,19 +145,22 @@ export const deleteSchedule = (
     withCredentials: true 
   })
   .then((res) => {
+    alert(res.data.message);
     if (res.data.code === 200) {
       dispatch({
         type: DELETESCHEDULE
       });
     }
-    alert(res.data.message);
+    else if (res.data.code === 403) {
+      history.replace('/');
+    }
   })
   .catch((err) => console.log(err));
 };
 
 //복용 일정 세부 가져오기
 export const getSchedule = (
-  sche_code: scheduleInterface["sche_code"]
+  sche_code: scheduleInterface["sche_code"], history: any
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
   .get(`${url}/schedule/get_schedule?sche_code=${sche_code}`,
@@ -160,6 +174,9 @@ export const getSchedule = (
         type: GETSCHEDULE,
         payload: res.data.data
       });
+    } else if (res.data.code === 403) {
+      alert(res.data.message);
+      history.replace('/');
     } else {
       alert(res.data.message);
     }
@@ -169,7 +186,7 @@ export const getSchedule = (
   
 //선택 일자 복용 일정 가져오기
 export const getScheduleList = (
-  { year, month, day }: scheduleInterface
+  { year, month, day }: scheduleInterface, history: any
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
   .get(`${url}/schedule/get_schedule_list?year=${year}&month=${month}&day=${day}`, 
@@ -182,6 +199,9 @@ export const getScheduleList = (
         type: GETSCHEDULELIST,
         payload: res.data.data
       });
+    } else if (res.data.code === 403) {
+      alert(res.data.message);
+      history.replace('/');
     } else{ 
       alert(res.data.message);
     }
@@ -190,7 +210,7 @@ export const getScheduleList = (
 };
 
 //오늘의 복용 일정 가져오기
-export const getTodaySchedule = () => async(dispatch: Dispatch<actionType>) => {
+export const getTodaySchedule = (history: any) => async(dispatch: Dispatch<actionType>) => {
   await axios
   .get(`${url}/schedule/get_today_schedule`,
   { 
@@ -202,12 +222,20 @@ export const getTodaySchedule = () => async(dispatch: Dispatch<actionType>) => {
         type: GETTODAYSCHEDULE,
         payload: res.data.data
       });
+    } else if (res.data.code === 403) {
+      alert(res.data.message);
+      history.replace('/');
     } else {
       alert(res.data.message);
     }
   })
   .catch((err) => console.log(err));
 };
+
+//로그아웃 시 schedule 초기화
+export const resetSchedule = () => ({
+  type: RESETSCHEDULE
+});
 
 
 //reducer
@@ -243,6 +271,8 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: actionType) => {
         ...state,
         today_schedule: action.payload
       }
+    case RESETSCHEDULE:
+      return INIT_SCHEDULE_STATE;
 
     default:
       return state;

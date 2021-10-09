@@ -8,19 +8,25 @@ import MediSearch from './camera/MediSearch';
 import ScheDetail from './schedule/ScheDetail';
 import Search from './search/Search';
 import SearchDetail from './search/SearchDetail';
+import Mypage from './mypage/Mypage';
+import Nav from './utill/Nav';
+import Top from './utill/Top';
 
-export default function User2() {
+export default function User() {
   return (
-    <div className="App">
+    <div className="User">
+      <Top/>
       <Switch>
         <Route exact path="/user/home" component={Home}/>
         <Route exact path="/user/camera" component={Camera}/>
         <Route exact path="/user/create-medi-info" component={CreateMediInfo}/>
         <Route exact path="/user/medi-search" component={MediSearch}/>
         <Route exact path="/user/sche-detail" component={ScheDetail}/>
-        <Route exact path="/user/user/search" component={Search}/>
+        <Route exact path="/user/search" component={Search}/>
         <Route exact path="/user/search-detail" component={SearchDetail}/>
+        <Route exact path="/user/mypage" component={Mypage}/>
       </Switch>
+      <Nav/>
     </div>
   );
 }
