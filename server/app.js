@@ -11,6 +11,7 @@ const helmet = require('helmet');
 const hpp = require('hpp');
 
 const authRouter = require('./routes/auth.js');
+const drugRouter = require('./routes/drug.js');
 const scheduleRouter = require('./routes/schedule.js');
 
 const db = require('./models/index.js');
@@ -69,6 +70,7 @@ app.use(passport.session());  //req.session 객체에 passport 정보 저장하�
 
 app.use('/auth', authRouter);
 app.use('/schedule', scheduleRouter);
+app.use('/drug', drugRouter);
 
 app.use((err, req, res, next) => {
   res.locals.message = err.message;

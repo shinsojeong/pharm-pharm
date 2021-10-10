@@ -57,10 +57,12 @@
     "sass-loader": "^12.1.0",
     "sequelize": "^6.6.5",
     "style-loader": "^3.3.0",
+    "tesseract.js": "^2.1.5",
     "webpack": "^5.55.1",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.0",
-    "webpack-stream": "^7.0.0"
+    "webpack-stream": "^7.0.0",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.15.0",
