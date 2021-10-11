@@ -61,7 +61,7 @@ const INIT_SCHEDULE_STATE: initType = {
 
 //복용 일정 생성
 export const createSchedule = (
-  { medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num, user_num }: scheduleInterface, history: any
+  { medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num }: scheduleInterface, history: any
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
   .post(`${url}/schedule/create_schedule`, {
@@ -72,8 +72,7 @@ export const createSchedule = (
     medi_day, 
     medi_time, 
     medi_times, 
-    medi_num,
-    user_num
+    medi_num
   },{ 
     withCredentials: true 
   })
