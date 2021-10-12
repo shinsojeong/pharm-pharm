@@ -8,7 +8,8 @@ const router = express.Router();
 
 // 복용 정보 등록
 router.post('/create_schedule', isLoggedIn, async(req, res) => {
-  const { medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num, user_num } = req.body;
+  const { medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num } = req.body;
+  const user_num = req.user.user_num;
 
   try {
     const sche = await Schedule.create({
@@ -122,7 +123,7 @@ router.get('/get_schedule_list', isLoggedIn, async(req, res) => {
   if (day.length === 1) {
     day = "0"+day;
   }
-  console.log(year+month+day)
+  
   const user_num = req.user.user_num;
   let date = new Date(`${year}-${month}-${day} 09:00:00`);
   const searchDay = date.getDay();

@@ -10,9 +10,15 @@ const key = process.env.DRUGINFO_SERVICE_KEY;
 
 //약 정보 받아오기
 router.post('/get_drug_info', (req, res) => {
-  const { itemName } = req.body;
-  console.log(itemName)
-  const url = `http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=${key}&itemName=${encodeURI(itemName)}`;
+  const { itemName, itemSeq } = req.body;
+  let url = `http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=${key}`;
+
+  if (itemName !== undefined) {
+    url += `&itemName=${encodeURI(itemName)}`;
+  }
+  if (itemSeq !== undefined) {
+    url += `$itemSeq=${encodeURI(itemSeq)}`;
+  }
 
   axios({
     url: `${url}`,
