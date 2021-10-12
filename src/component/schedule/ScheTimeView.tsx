@@ -19,9 +19,9 @@ export default function ScheTimeView({ time }: Props): ReactElement {
       }
       
       if (arr.indexOf(`${i}`)===-1) {
-        result = result.concat(<div className="timeItem" id="none">{num}</div>)
+        result = result.concat(<div className="timeItem" id="none" key={num}>{num}</div>)
       } else {
-        result = result.concat(<div className="timeItem" id="picked">{num}</div>)
+        result = result.concat(<div className="timeItem" id="picked" key={num}>{num}</div>)
       }
     }
     return result;
