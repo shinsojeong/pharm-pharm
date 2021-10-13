@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const { isLoggedIn } = require('./middlewares.js');
 
 const router = express.Router();
 
@@ -19,6 +20,21 @@ router.get('/logout', (req, res) => {
       status: "OK",
       code: 200
     })
+  })
+})
+
+//마이페이지 정보 가져오기
+router.get('/mypage', isLoggedIn, (req, res) => {
+  const { nickname, birth, gender } = req.user;
+
+  res.send({
+    status: "OK",
+    code: 200,
+    data: {
+      nickname: nickname,
+      birth: birth,
+      gender: gender
+    }
   })
 })
 
