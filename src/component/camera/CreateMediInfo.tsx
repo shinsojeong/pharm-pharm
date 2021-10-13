@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import { changeTop } from '../../module/bar';
 import { createSchedule } from '../../module/schedule';
+import { scheduleInterface } from '../../module/type';
 import { dayArr, timeArr } from '../utill/Reusable';
 
 export default function CreateMediInfo(): ReactElement {
@@ -11,7 +12,7 @@ export default function CreateMediInfo(): ReactElement {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const propData = location.state;
+  const propData: scheduleInterface = location.state;
   const [mediDate1, setMediDate1] = useState("");
   const [mediDate2, setMediDate2] = useState("");
   const [mediDay, setMediDay] = useState([]);
@@ -49,11 +50,6 @@ export default function CreateMediInfo(): ReactElement {
       }
     }
   };
-  
-  //뒤로가기
-  function goBack() {
-    history.goBack()
-  }
 
   //제출
   const submit = () => {
