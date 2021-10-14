@@ -98,7 +98,7 @@ router.get('/delete_schedule', isLoggedIn, async(req, res) => {
 
   try {
     const sche = await Schedule.destroy({
-      where: sche_code
+      where: { sche_code }
     })
     if (sche) {
       return res.send({

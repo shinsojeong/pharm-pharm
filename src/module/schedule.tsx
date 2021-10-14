@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 
 const url = process.env.REACT_APP_SERVER;
 
@@ -82,9 +82,10 @@ export const createSchedule = (
       dispatch({
         type: CREATESCHEDULE
       });
+      history.replace("/user/home");
     }
     else if (res.data.code === 403) {
-      history.replace('/');
+      history.replace("/");
     }
   })
   .catch((err) => console.log(err));
@@ -127,7 +128,7 @@ export const updateSchedule = (
       });
     }
     else if (res.data.code === 403) {
-      history.replace('/');
+      history.replace("/");
     }
   })
   .catch((err) => console.log(err));
@@ -138,9 +139,7 @@ export const deleteSchedule = (
   sche_code: scheduleInterface["sche_code"], history: any
 ) => async(dispatch: Dispatch<actionType>) => {
   await axios
-  .post(`${url}/schedule/delete_schedule`, {
-    sche_code
-  }, { 
+  .get(`${url}/schedule/delete_schedule?sche_code=${sche_code}`, { 
     withCredentials: true 
   })
   .then((res) => {
@@ -151,7 +150,7 @@ export const deleteSchedule = (
       });
     }
     else if (res.data.code === 403) {
-      history.replace('/');
+      history.replace("/");
     }
   })
   .catch((err) => console.log(err));
@@ -173,9 +172,10 @@ export const getSchedule = (
         type: GETSCHEDULE,
         payload: res.data.data
       });
+      history.push("/user/sche-detail");
     } else if (res.data.code === 403) {
       alert(res.data.message);
-      history.replace('/');
+      history.replace("/");
     } else {
       alert(res.data.message);
     }
@@ -200,7 +200,7 @@ export const getScheduleList = (
       });
     } else if (res.data.code === 403) {
       alert(res.data.message);
-      history.replace('/');
+      history.replace("/");
     } else{ 
       alert(res.data.message);
     }
@@ -223,7 +223,7 @@ export const getTodaySchedule = (history: any) => async(dispatch: Dispatch<actio
       });
     } else if (res.data.code === 403) {
       alert(res.data.message);
-      history.replace('/');
+      history.replace("/");
     } else {
       alert(res.data.message);
     }
