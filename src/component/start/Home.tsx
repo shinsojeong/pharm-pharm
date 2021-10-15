@@ -27,7 +27,7 @@ export default function Home(): ReactElement {
     dispatch(
       changeTop({
         left: "null",
-        center: "Home",
+        center: "홈",
         right: "null",
         lfunc: null, 
         rfunc: null
@@ -91,11 +91,6 @@ export default function Home(): ReactElement {
     )
   };
 
-  //modal
-  const showModal = () => {
-    setModalState(true);
-  };
-
   const showMonthModal = (days) => {
     setSelectedDate(days.year()+"년 "+(days.month()+1)+"월 "+days.date()+"일");
     //선택 일자 복용 정보 가져오기
@@ -114,8 +109,9 @@ export default function Home(): ReactElement {
   return (
     <div className="contents" id="home">
       <div className="items" id="todayList">
+        <p id="title">#  오늘의 복용 정보  #</p>
         {todaySche.length === 0 ?
-          <p>오늘의 복용 정보가 없습니다.</p>
+          <p id="message">오늘의 복용 정보가 없습니다.</p>
         :
           todaySche.map((data: scheduleInterface) => {
             return (
@@ -129,6 +125,7 @@ export default function Home(): ReactElement {
       </div>
 
       <div className="items" id="calendar">
+        <p id="title">#  월별 복용 정보  #</p>
         <div id="monthPick">
           <button onClick={goPrev} className="calendarBtn">&lt;</button>
           <span>{day.format('YYYY년 MM월')}</span>

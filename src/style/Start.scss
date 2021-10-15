@@ -1,5 +1,80 @@
+@import './valiables.scss';
+
 .login {
   width: 100%;
-  height: fit-content;
+  height: 100vh;
   background-color: #ffaa31;
+  text-align: center;
+  #logo {
+    width: 70%;
+    margin: 50px 0 40px 0;
+  }
+  a {
+    height: 45px;
+  }
+}
+
+#home {
+  #todayList {
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid $gray;
+    .todayListItem {
+      padding: 1px 10px;
+      text-overflow: ellipsis;
+      * {
+        display: inline-block;
+        margin: 0 auto;
+      }
+      #mediName {
+        width: 73%;
+        height: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space:nowrap;
+      }
+      #mediContent {
+        width: 27%;
+        text-align: right;
+        float: right;
+      }
+    }
+  }
+  #calendar {
+    #monthPick {
+      text-align: center;
+      margin: 10px auto;
+      span {
+        margin: 0 10px;
+      }
+      .calendarBtn {
+        width: 25px;
+        height: 25px;
+        background-color: $back1;
+        border: none;
+        border-radius: 30px;
+        color: $white;
+        font-weight: bolder;
+      }
+    }
+    #calendarTable {
+      margin: 0 auto;
+      text-align: center;
+      td {
+        width: 40px;
+        height: 25px;
+      }
+      #tdRed {
+        background-color: $back1;
+        color: $white;
+      }
+      #tdGray {
+        background-color: $gray;
+        color: $white;
+      }
+      #tdNone {
+        border: 1px solid $gray;
+      }
+    }
+  }
 }

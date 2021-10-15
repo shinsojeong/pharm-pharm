@@ -26,7 +26,7 @@ export default function Top(): ReactElement {
     if (top.right === "close") {
       return (
         <div className="rightItem" id="close">
-          <AiOutlineCloseCircle/>
+          <AiOutlineCloseCircle size="30px"/>
         </div>
       )
     } else if (top.right === "create") { 
