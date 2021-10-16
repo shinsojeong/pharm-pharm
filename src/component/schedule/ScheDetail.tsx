@@ -7,6 +7,7 @@ import { updateSchedule, deleteSchedule } from '../../module/schedule';
 import ScheTimeView from './ScheTimeView';
 import { changeTop } from '../../module/bar';
 import { dayArr, timeArr } from '../utill/Reusable';
+import '../../style/Schedule.scss';
 
 export default function ScheDetail(): ReactElement {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ export default function ScheDetail(): ReactElement {
   //뒤로가기
   function goBack() {
     history.goBack()
-  }
+  };
 
   //업데이트
   const updateSche = async() => {
@@ -103,12 +104,12 @@ export default function ScheDetail(): ReactElement {
       <table>
         <tbody>
           <tr>
-            <td>제품명</td>
-            <td>{data.medi_name}</td>
+            <td id="tdTitle">제품명</td>
+            <td id="tdContent">{data.medi_name}</td>
           </tr>
           <tr>
-            <td>복용 시작일</td>
-            <td>
+            <td id="tdTitle">복용 시작일</td>
+            <td id="tdContent">
               {!updateState ? 
                 data.medi_date1.slice(0,10)
               :
@@ -117,8 +118,8 @@ export default function ScheDetail(): ReactElement {
             </td>
           </tr>
           <tr>
-            <td>복용 종료일</td>
-            <td>
+            <td id="tdTitle">복용 종료일</td>
+            <td id="tdContent">
               {!updateState ?
                 data.medi_date2.slice(0,10)
               :
@@ -127,8 +128,8 @@ export default function ScheDetail(): ReactElement {
             </td>
           </tr>
           <tr>
-            <td>복용 요일</td>
-            <td>
+            <td id="tdTitle">복용 요일</td>
+            <td id="tdDay">
               {!updateState ?
                 (
                   mediDay.map((data) => {
@@ -153,45 +154,45 @@ export default function ScheDetail(): ReactElement {
               :
                 dayArr.map((data) => {
                   return (
-                    <div key={data.value}>
-                      <label htmlFor={data.value.toString()}>{data.day}</label>
+                    <span key={data.value}>
+                      <label htmlFor={data.value.toString()} id={mediDay.includes(data.value.toString()) ? "checked" : "none"}>{data.day}</label>
                       <input type="checkbox" name={data.value.toString()} 
                         onChange={(e) => changeHandler("mediDay", e.target.checked, data.value.toString())} 
                         value={data.value} id={data.value.toString()}
                         checked={mediDay.includes(data.value.toString()) ? true : false}>
                       </input>
-                    </div>
+                    </span>
                   )
                 })
               }
             </td>
           </tr>
           <tr>
-            <td>복용 시간</td>
+            <td id="tdTitle">복용 시간</td>
           </tr>
           <tr>
-            <td colSpan={2}>
+            <td colSpan={2} id="tdTime">
               {!updateState ?
                 <ScheTimeView time={(data.medi_time).toString()}/>
               :
                 timeArray.map((data) => {
                   return (
-                    <div key={data.value}>
-                      <label htmlFor={data.value.toString()}>{data.time}</label>
+                    <span key={data.value}>
+                      <label htmlFor={data.value.toString()} id={mediTime.includes(data.value.toString()) ? "checked" : "none"}>{data.time}</label>
                       <input type="checkbox" name={data.value.toString()} 
                         onChange={(e) => changeHandler("mediTime", e.target.checked, data.value.toString())} 
                         value={data.value} id={data.value.toString()}
                         checked={mediTime.includes(data.value.toString()) ? true : false}>
                       </input>
-                    </div>
+                    </span>
                   )
                 })
               }
             </td>
           </tr>
           <tr>
-            <td>복용 횟수</td>
-            <td>
+            <td id="tdTitle">복용 횟수</td>
+            <td id="tdContent">
               {!updateState ?
                 <p>1일 {data.medi_times}회</p>
               :
@@ -200,8 +201,8 @@ export default function ScheDetail(): ReactElement {
             </td>
           </tr>
           <tr>
-            <td>복용 개수</td>
-            <td>
+            <td id="tdTitle">복용 개수</td>
+            <td id="tdContent">
               {!updateState ?
                 <p>1회 {data.medi_num}정</p>
               :
@@ -213,12 +214,12 @@ export default function ScheDetail(): ReactElement {
       </table>
       {!updateState ?
         <div className="btnDiv">
-          <button onClick={() => setUpdateState(true)}>수정</button>
-          <button onClick={() => deleteSche()}>삭제</button>
+          <button id="whiteBtn" onClick={() => setUpdateState(true)}>수정</button>
+          <button id="orangeBtn" onClick={() => deleteSche()}>삭제</button>
         </div>
       :
         <div className="btnDiv">
-          <button onClick={() => updateSche()}>완료</button>
+          <button id="orangeBtn" onClick={() => updateSche()}>완료</button>
         </div>
       }
     </div>

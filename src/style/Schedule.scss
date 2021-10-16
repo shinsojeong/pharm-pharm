@@ -1,6 +1,9 @@
 @import './valiables.scss';
 
 #scheTimeView {
+  border: 2px solid $back1;
+  border-radius: 8px;
+  padding: 10px 0;
   .timeItem {
     width: 18px;
     height: 18px;
@@ -18,5 +21,153 @@
   }
   #none {
     color: $back1;
+  }
+}
+
+#scheModal {
+  text-align: center;
+  color: $black;
+  #close {
+    right: 20px;
+  }
+  #todayScheItems {
+    margin-top: 70px;
+    overflow-y: scroll;
+   .todayScheItem {
+     margin-bottom: 20px;
+      #name, #content {
+        display: inline-block;
+        margin: 0 auto;
+        padding: 0;
+        font-weight: bold;
+      }
+      #name {
+        width: 70%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space:nowrap;
+      }
+      #content {
+        width: 27%;
+        padding-right: 3px;
+        text-align: right;
+        float: right;
+      }
+    } 
+  }
+}
+
+#scheDetail {
+  text-align: center;
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    #tdTitle {
+      width: 90px;
+      font-weight: bold;
+      color: $black;
+      text-align: right;
+    }
+    #tdContent {
+      font-size: $font-small;
+      color: $black;
+    }
+  }
+  p {
+    margin: 0 auto;
+  }
+  .timeTitle {
+    text-align: center;
+  }
+  .btnDiv {
+    text-align: center;
+    #whiteBtn, #orangeBtn {
+      width: 100px;
+      height: 34px;
+      margin: 20px;
+      font-size: $font-middle;
+      font-weight: bold;
+    }
+    #orangeBtn {
+      background-color: $back1;
+      color: $white;
+    }
+  }
+  #tdTime {
+    label {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 40px;
+    }
+  }
+  input[type="text"] {
+    height: 30px;
+    text-align: center;
+  }
+}
+
+#createMediInfo {
+  text-align: center;
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    #tdTitle {
+      width: 100px;
+      font-size: $font-small;
+      font-weight: bold;
+      color: $black;
+      text-align: right;
+    }
+    #tdContent {
+      font-size: $font-x-small;
+      color: $black;
+    }
+  }
+  button {
+    width: 100px;
+    height: 30px;
+    background-color: $back1;
+    color: $white;
+    font-weight: bold;
+    margin-top: 30px;
+  }
+}
+
+#tdDay, #tdTime {
+  font-size: $font-x-small;
+  label {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border: 2px solid $back1;
+    border-radius: 25px;
+    text-align: center;
+    background-color: $back1;
+    margin: 0 2px;
+    font-weight: bolder;
+  }
+  #checked {
+    color: $white;
+    background-color: $back1;
+  }
+  #none {
+    color: $back1;
+    background-color: $white;
+  }
+  input {
+    display: none;
+    height: 0;
+  }
+}
+#tdTime {
+  label {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 30px;
   }
 }

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { changeTop, resetBar } from '../../module/bar';
 import { resetSchedule } from '../../module/schedule';
-import { GrUserFemale, GrUser } from 'react-icons/Gr';
+import Profile_analysis_Flatline from '../../source/Profile_analysis_Flatline.png';
 import '../../style/Mypage.scss';
 
 export default function Mypage(): ReactElement {
@@ -70,23 +70,16 @@ export default function Mypage(): ReactElement {
       <table id="profile">
         <tbody>
           <tr>
-            <td rowSpan={2}>
-              <div id="profileImg">
-                {myInfo.gender === "female" ?
-                  <GrUserFemale size="70"/>
-                :
-                  <GrUser size="70"/>
-                }
-              </div>
+            <td id="img">
+              <img src={Profile_analysis_Flatline} width="250px"/>
             </td>
-            <td>{myInfo.nickname}</td>
           </tr>
           <tr>
-            <td>{myInfo.birth}</td>
+            <td>{myInfo.nickname} 님</td>
           </tr>
         </tbody>
       </table>
-      <div onClick={logout}>
+      <div id="logout" onClick={logout}>
         <a>로그아웃</a>
       </div>
     </div>
