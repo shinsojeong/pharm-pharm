@@ -1,0 +1,18 @@
+@import './valiables.scss';
+
+#camera {
+  text-align: center;
+  #inputDiv {
+    margin-top: 170px;
+    #fileBtn {
+      padding: 20px;
+      background-color: $back1;
+      color: $white;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+    #inputFile {
+      display: none;
+    }
+  }
+}

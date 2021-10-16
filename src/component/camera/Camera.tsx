@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Tesseract from 'tesseract.js';
 import { changeTop } from '../../module/bar';
+import Files_And_Folder_Flatline from '../../source/Files_And_Folder_Flatline.png';
+import '../../style/Camera.scss';
 
 export default function Camera(): ReactElement {
   const history = useHistory();
@@ -80,6 +82,7 @@ export default function Camera(): ReactElement {
           }}
         ></input>
       </div>
+      <img src={Files_And_Folder_Flatline} width="250px"/>
     </div>
   )
 }
