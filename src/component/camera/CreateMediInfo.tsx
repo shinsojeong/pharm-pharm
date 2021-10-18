@@ -69,49 +69,69 @@ export default function CreateMediInfo(): ReactElement {
 
   return (
     <div className="contents" id="createMediInfo">
-      <label>품목기준코드</label>
-      <div>{propData.medi_code}</div>
-      <label>제품명</label>
-      <div>{propData.medi_name}</div>
-      <label>복용개수/횟수</label>
-      <div>{propData.medi_num}정씩 {propData.medi_times}회</div>
-      <label>복용시작일</label>
-      <input type="date" name="mediDate1" value={mediDate1} onChange={(e) => setMediDate1(e.target.value)}/>
-      <label>복용종료일</label>
-      <input type="date" name="mediDate2" value={mediDate2} onChange={(e) => setMediDate2(e.target.value)}/>
-      <label>복용요일</label>
-      <div>
-        {dayArr.map((data) => {
-          return (
-            <div key={data.value}>
-              <label htmlFor={data.value.toString()}>{data.day}</label>
-              <input type="checkbox" name={data.value.toString()} 
-                onChange={(e) => changeHandler("mediDay", e.target.checked, data.value)} 
-                value={data.value} id={data.value.toString()}
-                checked={mediDay.includes(data.value) ? true : false}>
-              </input>
-            </div>
-          )
-        })}
-      </div>
-      <label>복용시간</label>
-      <div>
-        {timeArray.map((data) => {
-            return (
-              <div key={data.value}>
-                <label htmlFor={data.value.toString()}>{data.time}</label>
-                <input type="checkbox" name={data.value.toString()} 
-                  onChange={(e) => changeHandler("mediTime", e.target.checked, data.value)} 
-                  value={data.value} id={data.value.toString()}
-                  checked={mediTime.includes(data.value) ? true : false}>
-                </input>
-              </div>
-            )
-          })}
-      </div>
-      <div>
+      <table>
+        <tbody>
+          <tr>
+            <td id="tdTitle">품목기준코드</td>
+            <td id="tdContent">{propData.medi_code}</td>
+          </tr>
+          <tr>
+            <td id="tdTitle">제품명</td>
+            <td id="tdContent">{propData.medi_name}</td>
+          </tr>
+          <tr>
+            <td id="tdTitle">복용개수/횟수</td>
+            <td id="tdContent">{propData.medi_num}정씩 {propData.medi_times}회</td>
+          </tr>
+          <tr>
+            <td id="tdTitle">복용시작일</td>
+            <td id="tdContent">
+              <input type="date" name="mediDate1" value={mediDate1} onChange={(e) => setMediDate1(e.target.value)}/>
+            </td>
+          </tr>
+          <tr>
+            <td id="tdTitle">복용종료일</td>
+            <td id="tdContent">
+              <input type="date" name="mediDate2" value={mediDate2} onChange={(e) => setMediDate2(e.target.value)}/>
+            </td>
+          </tr>
+          <tr>
+            <td id="tdTitle">복용요일</td>
+            <td id="tdDay">
+              {dayArr.map((data) => {
+                return (
+                  <span key={data.value}>
+                    <label htmlFor={data.value.toString()} id={mediDay.includes(data.value) ? "checked" : "none"}>{data.day}</label>
+                    <input type="checkbox" name={data.value.toString()} 
+                      onChange={(e) => changeHandler("mediDay", e.target.checked, data.value)} 
+                      value={data.value} id={data.value.toString()}
+                      checked={mediDay.includes(data.value) ? true : false}>
+                    </input>
+                  </span>
+                )
+              })}
+            </td>
+          </tr>
+          <tr>
+            <td id="tdTitle">복용시간</td>
+            <td id="tdTime">
+              {timeArray.map((data) => {
+                return (
+                  <span key={data.value}>
+                    <label htmlFor={data.value.toString()} id={mediTime.includes(data.value) ? "checked" : "none"}>{data.time}</label>
+                    <input type="checkbox" name={data.value.toString()} 
+                      onChange={(e) => changeHandler("mediTime", e.target.checked, data.value)} 
+                      value={data.value} id={data.value.toString()}
+                      checked={mediTime.includes(data.value) ? true : false}>
+                    </input>
+                  </span>
+                )
+              })}
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-      </div>
       <button onClick={submit}>등록</button>
     </div>
   )

@@ -54,6 +54,22 @@ export interface scheduleInterface {
   last_day?: number
 }
 
+export interface drugInterface {
+  entpName?: string,
+  itemName?: string,
+  itemSeq?: string,
+  efcyQesitm?: string,
+  useMethodQesitm?: string,
+  atpnWarnQesitm?: string,
+  atpnQesitm?: string,
+  intrcQesitm?: string,
+  seQesitm?: string,
+  depositMethodQesitm?: string,
+  openDe?: string,
+  updateDe?: string,
+  itemImage?: string
+}
+
 
 //bar
 //action type
