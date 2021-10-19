@@ -45,6 +45,9 @@ html, body, #root {
     color: $white;
     font-weight: bolder;
   }
+  #message {
+    margin: 100px auto;
+  }
   #monthScheItems {
     margin-top: 60px;
     .todayScheItem, .monthScheItem {
