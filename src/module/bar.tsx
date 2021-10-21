@@ -2,24 +2,16 @@ import {  //action type
   CHANGETOP,
   CHANGENAV,
   RESETBAR
-} from './type';
-import {  //action interface
-  topAction,
-  navAction,
-  barResetAction
-} from './type';
-import { topInterface, navInterface } from './type';
+} from './type/barType';
+import { topInterface, navInterface } from './type/barType';
 
 
 //type
+import { barActionType } from './type/barType';
 type initType = {
   top: topInterface,
   nav: navInterface
 }
-type actionType =
-  | topAction
-  | navAction
-  | barResetAction;
 
 //initial state
 const INIT_BAR_STATE: initType = {
@@ -61,7 +53,7 @@ export const resetBar = () => ({
 
 
 //reducer
-const bar = (state = INIT_BAR_STATE, action: actionType) => {
+const bar = (state = INIT_BAR_STATE, action: barActionType) => {
   switch(action.type) {
 
     case CHANGETOP:

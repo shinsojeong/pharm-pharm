@@ -1,30 +1,30 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+
 import { getSchedule } from '../../module/schedule';
 import { RootState } from '../../module/store';
-import { scheduleInterface } from '../../module/type';
+import { scheduleInterface } from '../../module/type/scheType';
+
 import ScheTimeView from './ScheTimeView';
 
 export default function ScheMonthModal({ setMonthModalState, today }): ReactElement {
   const dispatch = useDispatch();
-  const history = useHistory();
   
   const schedule = useSelector((state: RootState) => state.schedule.calendar);
 
   //function
   //상세정보로 이동
   const goDetail = (sche_code: string) => {
-    dispatch(getSchedule(sche_code, history));
+    dispatch(getSchedule({ sche_code }));
   };
 
   return (
     <div className="modal" id="scheMonthModal">
       <p id="title">{today}</p>
       <span id="close" onClick={setMonthModalState}>X</span>
-      {schedule.length === 0 ? 
-        <p>해당 날짜의 복용 정보가 없습니다.</p>
+      {schedule === undefined || schedule.length === 0 ? 
+        <p id="message">해당 날짜의 복용 정보가 없습니다.</p>
       :
         <div id="monthScheItems">
           { schedule.map((data: scheduleInterface) => {

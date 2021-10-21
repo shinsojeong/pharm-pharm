@@ -3,8 +3,10 @@ import { ReactElement, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import { changeTop, resetBar } from '../../module/bar';
 import { resetSchedule } from '../../module/schedule';
+
 import Profile_analysis_Flatline from '../../source/Profile_analysis_Flatline.png';
 import '../../style/Mypage.scss';
 

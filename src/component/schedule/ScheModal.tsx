@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+
 import { getSchedule } from '../../module/schedule';
 import { RootState } from '../../module/store';
-import { scheduleInterface } from '../../module/type';
+import { scheduleInterface } from '../../module/type/scheType';
+
 import ScheTimeView from './ScheTimeView';
 import '../../style/Schedule.scss';
 
 export default function ScheModal({ setModalState }): ReactElement {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const today_schedule = useSelector((state: RootState) => state.schedule.today_schedule);
 
   const goDetail = (sche_code: string) => {
-    dispatch(getSchedule(sche_code, history));
+    dispatch(getSchedule({ sche_code }));
   };
 
   return (

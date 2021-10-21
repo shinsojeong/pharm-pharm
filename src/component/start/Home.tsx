@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
+
 import { changeTop } from '../../module/bar';
 import { RootState } from '../../module/store';
 import { getScheduleList, getTodaySchedule } from '../../module/schedule';
-import { scheduleInterface } from '../../module/type';
+import { scheduleInterface } from '../../module/type/scheType';
 import ScheModal from '../schedule/ScheModal';
-import '../../style/Start.scss';
 import ScheMonthModal from '../schedule/ScheMonthModal';
-import { useHistory } from 'react-router-dom';
+import '../../style/Start.scss';
 
 export default function Home(): ReactElement {
   const dispatch = useDispatch();
@@ -100,8 +101,7 @@ export default function Home(): ReactElement {
           year: days.year(), 
           month: days.month()+1, 
           day: days.date()
-        }, 
-        history
+        }
     ))
     setMonthModalState(true);
   };

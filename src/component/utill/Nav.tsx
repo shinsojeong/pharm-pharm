@@ -2,9 +2,10 @@ import * as React from 'react';
 import { ReactElement } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import { changeNav } from '../../module/bar';
-import '../../style/Bar.scss';
 import { RootState } from '../../module/store';
+import '../../style/Bar.scss';
 import { VscSearch, VscDeviceCamera, VscAccount, VscHome } from 'react-icons/Vsc';
 
 export default function Nav(): ReactElement {

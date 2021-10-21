@@ -1,45 +1,33 @@
-import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
-import { Dispatch } from 'redux';
+import { createThunk } from './lib/reduxUtil';
 
-const url = process.env.REACT_APP_SERVER;
-
+import { createSche, updateSche, deleteSche, getSche, getScheList, getTodaySche } from './api/scheduleAPI';
 
 import {  //action type
-  CREATESCHEDULE,
-  UPDATESCHEDULE,
-  DELETESCHEDULE,
-  GETSCHEDULE,
-  GETSCHEDULELIST,
-  GETTODAYSCHEDULE,
-  RESETSCHEDULE
-} from './type';
-import {  //action interface
-  createAction,
-  updateAction,
-  deleteAction,
-  getAction,
-  getListAction,
-  getTodayAction,
-  resetScheduleAction
-} from './type';
-import { scheduleInterface } from './type';
+  CREATESCHEDULE, CREATESCHEDULE_SUCCESS, CREATESCHEDULE_ERROR,
+  UPDATESCHEDULE, UPDATESCHEDULE_SUCCESS, UPDATESCHEDULE_ERROR,
+  DELETESCHEDULE, DELETESCHEDULE_SUCCESS, DELETESCHEDULE_ERROR,
+  GETSCHEDULE, GETSCHEDULE_SUCCESS, GETSCHEDULE_ERROR,
+  GETSCHEDULELIST, GETSCHEDULELIST_SUCCESS, GETSCHEDULELIST_ERROR,
+  GETTODAYSCHEDULE, GETTODAYSCHEDULE_SUCCESS, GETTODAYSCHEDULE_ERROR,
+  RESETSCHEDULE  //Reset
+} from './type/scheType';
+
+import { 
+  scheduleInterface, 
+  statesInterface 
+} from './type/scheType';
 
 //type
+import { scheActionType } from './type/scheType';
 type initType = {
   calendar: any,
   today_schedule: any,
-  selected_schedule: scheduleInterface
+  selected_schedule: scheduleInterface,
+  states: statesInterface
 }
-type actionType =
-  | createAction
-  | updateAction
-  | deleteAction
-  | getAction
-  | getListAction
-  | getTodayAction
-  | resetScheduleAction;
+
 
 //initial state
 const INIT_SCHEDULE_STATE: initType = {
@@ -55,221 +43,228 @@ const INIT_SCHEDULE_STATE: initType = {
     medi_time: "",
     medi_times: 0,
     medi_num: 0
+  },
+  states: {
+    loading: false,
+    data: "",
+    error: false
   }
 };
 
 
 //복용 일정 생성
-export const createSchedule = (
-  { medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num }: scheduleInterface, history: any
-) => async(dispatch: Dispatch<actionType>) => {
-  await axios
-  .post(`${url}/schedule/create_schedule`, {
-    medi_code, 
-    medi_name, 
-    medi_date1, 
-    medi_date2, 
-    medi_day, 
-    medi_time, 
-    medi_times, 
-    medi_num
-  },{ 
-    withCredentials: true 
-  })
-  .then((res) => {
-    alert(res.data.message);
-    if (res.data.code === 200) {
-      dispatch({
-        type: CREATESCHEDULE
-      });
-      history.replace("/user/home");
-    }
-    else if (res.data.code === 403) {
-      history.replace("/");
-    }
-  })
-  .catch((err) => console.log(err));
-};
+export const createSchedule = createThunk(CREATESCHEDULE, createSche, true, "/user/home");
 
 //복용 일정 수정
-export const updateSchedule = (
-  { sche_code, medi_code, medi_name, medi_date1, medi_date2, medi_day, medi_time, medi_times, medi_num }: scheduleInterface, history: any
-) => async(dispatch: Dispatch<actionType>) => {
-  await axios
-  .post(`${url}/schedule/update_schedule`, {
-    sche_code,
-    medi_code, 
-    medi_name,
-    medi_date1,
-    medi_date2,
-    medi_day,
-    medi_time,
-    medi_times,
-    medi_num,
-  }, { 
-    withCredentials: true 
-  })
-  .then((res) => {
-    alert(res.data.message);
-    if (res.data.code === 200) {
-      dispatch({
-        type: UPDATESCHEDULE,
-        payload: {
-          sche_code,
-          medi_code, 
-          medi_name,
-          medi_date1,
-          medi_date2,
-          medi_day,
-          medi_time,
-          medi_times,
-          medi_num
-        }
-      });
-    }
-    else if (res.data.code === 403) {
-      history.replace("/");
-    }
-  })
-  .catch((err) => console.log(err));
-};
+export const updateSchedule = createThunk(UPDATESCHEDULE, updateSche, false);
 
 //복용 일정 삭제
-export const deleteSchedule = (
-  sche_code: scheduleInterface["sche_code"], history: any
-) => async(dispatch: Dispatch<actionType>) => {
-  await axios
-  .get(`${url}/schedule/delete_schedule?sche_code=${sche_code}`, { 
-    withCredentials: true 
-  })
-  .then((res) => {
-    alert(res.data.message);
-    if (res.data.code === 200) {
-      dispatch({
-        type: DELETESCHEDULE
-      });
-    }
-    else if (res.data.code === 403) {
-      history.replace("/");
-    }
-  })
-  .catch((err) => console.log(err));
-};
+export const deleteSchedule = createThunk(DELETESCHEDULE, deleteSche, true, "/user/home");
 
 //복용 일정 세부 가져오기
-export const getSchedule = (
-  sche_code: scheduleInterface["sche_code"], history: any
-) => async(dispatch: Dispatch<actionType>) => {
-  await axios
-  .get(`${url}/schedule/get_schedule?sche_code=${sche_code}`,
-    { 
-      withCredentials: true 
-    }
-  )
-  .then((res) => {
-    if (res.data.code === 200) {
-      dispatch({
-        type: GETSCHEDULE,
-        payload: res.data.data
-      });
-      history.push("/user/sche-detail");
-    } else if (res.data.code === 403) {
-      alert(res.data.message);
-      history.replace("/");
-    } else {
-      alert(res.data.message);
-    }
-  })
-  .catch((err) => console.log(err));
-};
+export const getSchedule = createThunk(GETSCHEDULE, getSche, true, "/user/sche-detail");
   
 //선택 일자 복용 일정 가져오기
-export const getScheduleList = (
-  { year, month, day }: scheduleInterface, history: any
-) => async(dispatch: Dispatch<actionType>) => {
-  await axios
-  .get(`${url}/schedule/get_schedule_list?year=${year}&month=${month}&day=${day}`, 
-  { 
-    withCredentials: true 
-  })
-  .then((res) => {
-    if (res.data.code === 200) {
-      dispatch({
-        type: GETSCHEDULELIST,
-        payload: res.data.data
-      });
-    } else if (res.data.code === 403) {
-      alert(res.data.message);
-      history.replace("/");
-    } else{ 
-      alert(res.data.message);
-    }
-  })
-  .catch((err) => console.log(err));
-};
+export const getScheduleList = createThunk(GETSCHEDULELIST, getScheList, false);
 
 //오늘의 복용 일정 가져오기
-export const getTodaySchedule = (history: any) => async(dispatch: Dispatch<actionType>) => {
-  await axios
-  .get(`${url}/schedule/get_today_schedule`,
-  { 
-    withCredentials: true 
-  })
-  .then((res) => {
-    if (res.data.code === 200) {
-      dispatch({
-        type: GETTODAYSCHEDULE,
-        payload: res.data.data
-      });
-    } else if (res.data.code === 403) {
-      alert(res.data.message);
-      history.replace("/");
-    } else {
-      alert(res.data.message);
-    }
-  })
-  .catch((err) => console.log(err));
-};
+export const getTodaySchedule = createThunk(GETTODAYSCHEDULE, getTodaySche, false);
 
 //로그아웃 시 schedule 초기화
-export const resetSchedule = () => ({
-  type: RESETSCHEDULE
-});
+export const resetSchedule = () => ({ type: RESETSCHEDULE });
 
 
 //reducer
-const schedule = (state = INIT_SCHEDULE_STATE, action: actionType) => {
+const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
   switch(action.type) {
 
+    //create
     case CREATESCHEDULE:
       return { 
-        ...state
+        ...state,
+        states: {
+          ...state.states,
+          loading: true,
+          error: false
+        }
       };
+    case CREATESCHEDULE_SUCCESS:
+      return {
+        ...state,
+        states: {
+          ...state.states,
+          loading: false,
+          error: false
+        }
+      };
+    case CREATESCHEDULE_ERROR:
+      return {
+        ...state,
+        states: {
+          ...state.states,
+          loading: false,
+          data: action.payload,
+          error: true
+        }
+      };
+
+    //update
     case UPDATESCHEDULE:
       return { 
         ...state,
-        selected_schedule: action.payload
+        states: {
+          ...state.states,
+          loading: true,
+          error: false
+        }
       };
+    case UPDATESCHEDULE_SUCCESS:
+      return {
+        ...state,
+        selected_schedule: action.payload,
+        states: {
+          ...state.states,
+          loading: false,
+          error: false
+        }
+      };
+    case UPDATESCHEDULE_ERROR:
+      return {
+        ...state,
+        states: {
+          ...state.states,
+          loading: false,
+          data: action.payload,
+          error: true
+        }
+      };
+
+    //delete
     case DELETESCHEDULE:
       return {
         ...state,
-        selected_schedule: INIT_SCHEDULE_STATE.selected_schedule
-      }
+        states: {
+          ...state.states,
+          loading: true,
+          error: false
+        }
+      };
+    case DELETESCHEDULE_SUCCESS:
+      return {
+        ...state,
+        selected_schedule: INIT_SCHEDULE_STATE.selected_schedule,
+        states: {
+          ...state.states,
+          loading: false,
+          error: false
+        }
+      };
+    case DELETESCHEDULE_ERROR:
+      return {
+        ...state,
+        states: {
+          ...state.states,
+          loading: false,
+          data: action.payload,
+          error: true
+        }
+      };
+
+    //get
     case GETSCHEDULE:
       return {
         ...state,
-        selected_schedule: action.payload
-      }
+        states: {
+          ...state.states,
+          loading: true,
+          error: false
+        }
+      };
+    case GETSCHEDULE_SUCCESS:
+      return {
+        ...state,
+        selected_schedule: action.payload,
+        states: {
+          ...state.states,
+          loading: false,
+          error: false
+        }
+      };
+    case GETSCHEDULE_ERROR:
+      return {
+        ...state,
+        states: {
+          ...state.states,
+          loading: false,
+          data: action.payload,
+          error: true
+        }
+      };
+
+    //getList
     case GETSCHEDULELIST:
       return {
         ...state,
-        calendar: action.payload
-      }
+        calendar: action.payload,
+        states: {
+          ...state.states,
+          loading: true,
+          error: false
+        }
+      };
+    case GETSCHEDULELIST_SUCCESS:
+      return {
+        ...state,
+        calendar: action.payload,
+        states: {
+          ...state.states,
+          loading: false,
+          error: false
+        }
+      };
+    case GETSCHEDULELIST_ERROR:
+      return {
+        ...state,
+        states: {
+          ...state.states,
+          loading: false,
+          data: action.payload,
+          error: true
+        }
+      };
+    
+    //getToday
     case GETTODAYSCHEDULE:
       return {
         ...state,
-        today_schedule: action.payload
-      }
+        states: {
+          ...state.states,
+          loading: true,
+          error: false
+        }
+      };
+    case GETTODAYSCHEDULE_SUCCESS:
+      return {
+        ...state,
+        today_schedule: action.payload,
+        states: {
+          ...state.states,
+          loading: false,
+          error: false
+        }
+      };
+    case GETTODAYSCHEDULE_ERROR:
+      return {
+        ...state,
+        states: {
+          ...state.states,
+          loading: false,
+          data: action.payload,
+          error: true
+        }
+      };
+
+    //reset
     case RESETSCHEDULE:
       return INIT_SCHEDULE_STATE;
 

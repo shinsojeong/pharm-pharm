@@ -2,9 +2,10 @@ import * as React from 'react';
 import { ReactElement, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
+
 import { changeTop } from '../../module/bar';
 import { createSchedule } from '../../module/schedule';
-import { scheduleInterface } from '../../module/type';
+import { scheduleInterface } from '../../module/type/scheType';
 import { dayArr, timeArr } from '../utill/Reusable';
 
 export default function CreateMediInfo(): ReactElement {

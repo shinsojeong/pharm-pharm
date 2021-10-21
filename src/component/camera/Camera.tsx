@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Tesseract from 'tesseract.js';
+
 import { changeTop } from '../../module/bar';
 import Files_And_Folder_Flatline from '../../source/Files_And_Folder_Flatline.png';
 import '../../style/Camera.scss';
@@ -38,8 +39,8 @@ export default function Camera(): ReactElement {
       'kor'
     ).then(({ data: { text } }) => {
       const trimStr = text.replace(/(\s*)/g, "");
-      const nameStr = trimStr.split('[');  //[0]
-      const timeNumStr = trimStr.split(']');  //[1][0], [1],[3]
+      const nameStr = trimStr.split('[');
+      const timeNumStr = trimStr.split(']');
       
       axios.post(`${url}/drug/get_drug_info`, {
         itemName: nameStr[0]

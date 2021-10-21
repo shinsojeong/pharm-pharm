@@ -2,11 +2,13 @@ import * as React from 'react';
 import { ReactElement, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { RootState } from '../../module/store';
 import { updateSchedule, deleteSchedule } from '../../module/schedule';
-import ScheTimeView from './ScheTimeView';
 import { changeTop } from '../../module/bar';
 import { dayArr, timeArr } from '../utill/Reusable';
+
+import ScheTimeView from './ScheTimeView';
 import '../../style/Schedule.scss';
 
 export default function ScheDetail(): ReactElement {
@@ -28,7 +30,7 @@ export default function ScheDetail(): ReactElement {
   const data = useSelector((state: RootState) => state.schedule.selected_schedule);
   const [updateState, setUpdateState] = useState(false);
   const [mediDate1, setMediDate1] = useState(data.medi_date1);
-  const [mdeiDate2, setMediDate2] = useState(data.medi_date2);
+  const [mediDate2, setMediDate2] = useState(data.medi_date2);
   const [mediDay, setMediDay] = useState((data.medi_day).split(','));
   const [mediTime, setMediTime] = useState((data.medi_time).split(','));
   const [mediTimes, setMediTimes] = useState(data.medi_times);
@@ -38,46 +40,36 @@ export default function ScheDetail(): ReactElement {
   //function
   //뒤로가기
   function goBack() {
-    history.goBack()
+    history.replace("/user/home");
   };
 
   //업데이트
   const updateSche = async() => {
-    try {
-      dispatch(
-        updateSchedule(
-          {
-            sche_code: data.sche_code,
-            medi_code: data.medi_code, 
-            medi_name: data.medi_name,
-            medi_date1: mediDate1,
-            medi_date2: mdeiDate2,
-            medi_day: mediDay.toString(),
-            medi_time: mediTime.toString(),
-            medi_times: mediTimes,
-            medi_num: mediNum
-          }, history
-        )
-      );
-    }
-    finally {
-      setUpdateState(false);
-    }
+    await dispatch(
+      updateSchedule(
+        {
+          sche_code: data.sche_code,
+          medi_code: data.medi_code, 
+          medi_name: data.medi_name,
+          medi_date1: mediDate1,
+          medi_date2: mediDate2,
+          medi_day: mediDay.toString(),
+          medi_time: mediTime.toString(),
+          medi_times: mediTimes,
+          medi_num: mediNum
+        }
+      )
+    );
+    setUpdateState(false);
   };
 
   //삭제
   const deleteSche = () => {
-    try {
-      dispatch(
-        deleteSchedule(
-          data.sche_code,
-          history
-        )
-      );
-    }
-    finally {
-      history.replace("/user/home");
-    }
+    dispatch(
+      deleteSchedule(
+        { sche_code: data.sche_code }
+      )
+    );
   };
 
   //checkbox changeHandler
@@ -123,7 +115,7 @@ export default function ScheDetail(): ReactElement {
               {!updateState ?
                 data.medi_date2.slice(0,10)
               :
-                <input type="date" onChange={(e) => setMediDate2(e.target.value)} value={mdeiDate2.slice(0,10)}/>
+                <input type="date" onChange={(e) => setMediDate2(e.target.value)} value={mediDate2.slice(0,10)}/>
               }
             </td>
           </tr>
