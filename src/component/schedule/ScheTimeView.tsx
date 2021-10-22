@@ -25,7 +25,7 @@ export default function ScheTimeView({ time }: Props): ReactElement {
       }
     }
     return result;
-  };
+  }
 
   return (
     <div className="module" id="scheTimeView">

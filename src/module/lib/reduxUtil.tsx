@@ -28,4 +28,4 @@ export const createThunk = (
       dispatch({ type: ERROR, payload: e });  //실패
     }
   });
-};
+}

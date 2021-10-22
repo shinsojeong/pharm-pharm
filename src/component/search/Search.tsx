@@ -16,7 +16,7 @@ export default function Search(): ReactElement {
   const goDetail = (item: object) => {
     setDetail(item);
     setModalState(true);
-  };
+  }
 
   return (
     <div className="contents" id="search">

@@ -33,7 +33,7 @@ export default function Home(): ReactElement {
         lfunc: null, 
         rfunc: null
       })
-    )
+    );
     getTodaySche(); //오늘의 스케쥴 가져오기
   }, []);
 
@@ -41,12 +41,12 @@ export default function Home(): ReactElement {
   //캘린더 이전달로 변경
   const goPrev = () => {
     setDay(day.clone().subtract(1, 'month'));
-  };
+  }
 
   //캘린더 다음달로 변경
   const goNext = () => {
     setDay(day.clone().add(1, 'month'));
-  };
+  }
 
   //해당 달 캘린더 가져오기
   const getCalendar = () => {
@@ -83,14 +83,14 @@ export default function Home(): ReactElement {
         );
       }
       return result;
-  };
+  }
 
   //오늘의 복용 정보 가져오기
   const getTodaySche = () => {
     dispatch(
       getTodaySchedule(history)
     )
-  };
+  }
 
   const showMonthModal = (days) => {
     setSelectedDate(days.year()+"년 "+(days.month()+1)+"월 "+days.date()+"일");
@@ -104,7 +104,7 @@ export default function Home(): ReactElement {
         }
     ))
     setMonthModalState(true);
-  };
+  }
 
   return (
     <div className="contents" id="home">

@@ -25,7 +25,7 @@ const INIT_BAR_STATE: initType = {
   nav: {
     selected: "home"
   }
-};
+}
 
 
 //상단바 변경
@@ -73,7 +73,7 @@ const bar = (state = INIT_BAR_STATE, action: barActionType) => {
 
     default:
       return state;
-  };
-};
+  }
+}
 
 export default bar;

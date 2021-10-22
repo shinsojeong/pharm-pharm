@@ -17,7 +17,7 @@ export default function ScheMonthModal({ setMonthModalState, today }): ReactElem
   //상세정보로 이동
   const goDetail = (sche_code: string) => {
     dispatch(getSchedule({ sche_code }));
-  };
+  }
 
   return (
     <div className="modal" id="scheMonthModal">

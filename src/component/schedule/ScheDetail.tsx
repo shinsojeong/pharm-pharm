@@ -41,7 +41,7 @@ export default function ScheDetail(): ReactElement {
   //뒤로가기
   function goBack() {
     history.replace("/user/home");
-  };
+  }
 
   //업데이트
   const updateSche = async() => {
@@ -61,7 +61,7 @@ export default function ScheDetail(): ReactElement {
       )
     );
     setUpdateState(false);
-  };
+  }
 
   //삭제
   const deleteSche = () => {
@@ -70,7 +70,7 @@ export default function ScheDetail(): ReactElement {
         { sche_code: data.sche_code }
       )
     );
-  };
+  }
 
   //checkbox changeHandler
   const changeHandler = (type: string, checked: boolean, id: string) => {
@@ -89,7 +89,7 @@ export default function ScheDetail(): ReactElement {
         setMediTime(mediTime.filter((el) => el !== id));
       }
     }
-  };
+  }
 
   return (
     <div className="contents" id="scheDetail">

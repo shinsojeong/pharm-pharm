@@ -43,7 +43,7 @@ export default function SearchModule({setRes}): ReactElement {
         alert("일치하는 결과가 없습니다.");
       }
     })
-  };
+  }
 
   return (
     <div className="module" id="searchModule">

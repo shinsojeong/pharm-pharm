@@ -50,7 +50,7 @@ export default function CreateMediInfo(): ReactElement {
         setMediTime(mediTime.filter((el) => el !== id));
       }
     }
-  };
+  }
 
   //제출
   const submit = () => {
@@ -64,9 +64,9 @@ export default function CreateMediInfo(): ReactElement {
         medi_time: mediTime.toString(),
         medi_times: propData.medi_times,
         medi_num: propData.medi_num
-      }, history)
+      })
     )
-  };
+  }
 
   return (
     <div className="contents" id="createMediInfo">

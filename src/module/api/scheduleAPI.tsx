@@ -35,7 +35,7 @@ export const createSche = async ({
       res
     });
   }
-};
+}
 
 //복용 일정 수정
 export const updateSche = async ({
@@ -82,7 +82,7 @@ export const updateSche = async ({
       }
     });
   }
-};
+}
 
 //복용 일정 삭제
 export const deleteSche = async (
@@ -100,7 +100,7 @@ export const deleteSche = async (
       res
     });
   }
-};
+}
 
 //복용 일정 세부 가져오기
 export const getSche = async (
@@ -117,7 +117,7 @@ export const getSche = async (
       res
     });
   }
-};
+}
 
 //선택 일자 복용 일정 가져오기
 export const getScheList = async (
@@ -134,7 +134,7 @@ export const getScheList = async (
       res
     });
   }
-};
+}
 
 //오늘의 복용 일정 가져오기
 export const getTodaySche = async () => {
@@ -149,4 +149,4 @@ export const getTodaySche = async () => {
       res
     });
   }
-};
+}

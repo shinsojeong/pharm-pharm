@@ -30,7 +30,7 @@ export default function Camera(): ReactElement {
   //사진 업로드
   const uploadImg = (files: FileList) => {
     recognize(files[0]);
-  };
+  }
 
   //OCR
   const recognize = (picture: File) => {
@@ -66,7 +66,7 @@ export default function Camera(): ReactElement {
       })
       
     })
-  };
+  }
 
   return (
     <div className="contents" id="camera">

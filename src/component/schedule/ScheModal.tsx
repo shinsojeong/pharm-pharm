@@ -16,7 +16,7 @@ export default function ScheModal({ setModalState }): ReactElement {
 
   const goDetail = (sche_code: string) => {
     dispatch(getSchedule({ sche_code }));
-  };
+  }
 
   return (
     <div className="modal" id="scheModal">

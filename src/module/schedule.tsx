@@ -26,7 +26,7 @@ type initType = {
   today_schedule: any,
   selected_schedule: scheduleInterface,
   states: statesInterface
-}
+};
 
 
 //initial state
@@ -87,7 +87,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: true,
           error: false
         }
-      };
+      }
     case CREATESCHEDULE_SUCCESS:
       return {
         ...state,
@@ -96,7 +96,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: false,
           error: false
         }
-      };
+      }
     case CREATESCHEDULE_ERROR:
       return {
         ...state,
@@ -106,7 +106,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           data: action.payload,
           error: true
         }
-      };
+      }
 
     //update
     case UPDATESCHEDULE:
@@ -117,7 +117,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: true,
           error: false
         }
-      };
+      }
     case UPDATESCHEDULE_SUCCESS:
       return {
         ...state,
@@ -127,7 +127,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: false,
           error: false
         }
-      };
+      }
     case UPDATESCHEDULE_ERROR:
       return {
         ...state,
@@ -137,7 +137,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           data: action.payload,
           error: true
         }
-      };
+      }
 
     //delete
     case DELETESCHEDULE:
@@ -148,7 +148,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: true,
           error: false
         }
-      };
+      }
     case DELETESCHEDULE_SUCCESS:
       return {
         ...state,
@@ -158,7 +158,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: false,
           error: false
         }
-      };
+      }
     case DELETESCHEDULE_ERROR:
       return {
         ...state,
@@ -168,7 +168,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           data: action.payload,
           error: true
         }
-      };
+      }
 
     //get
     case GETSCHEDULE:
@@ -179,7 +179,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: true,
           error: false
         }
-      };
+      }
     case GETSCHEDULE_SUCCESS:
       return {
         ...state,
@@ -189,7 +189,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: false,
           error: false
         }
-      };
+      }
     case GETSCHEDULE_ERROR:
       return {
         ...state,
@@ -199,7 +199,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           data: action.payload,
           error: true
         }
-      };
+      }
 
     //getList
     case GETSCHEDULELIST:
@@ -211,7 +211,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: true,
           error: false
         }
-      };
+      }
     case GETSCHEDULELIST_SUCCESS:
       return {
         ...state,
@@ -221,7 +221,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: false,
           error: false
         }
-      };
+      }
     case GETSCHEDULELIST_ERROR:
       return {
         ...state,
@@ -231,7 +231,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           data: action.payload,
           error: true
         }
-      };
+      }
     
     //getToday
     case GETTODAYSCHEDULE:
@@ -242,7 +242,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: true,
           error: false
         }
-      };
+      }
     case GETTODAYSCHEDULE_SUCCESS:
       return {
         ...state,
@@ -252,7 +252,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           loading: false,
           error: false
         }
-      };
+      }
     case GETTODAYSCHEDULE_ERROR:
       return {
         ...state,
@@ -262,7 +262,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
           data: action.payload,
           error: true
         }
-      };
+      }
 
     //reset
     case RESETSCHEDULE:
@@ -270,7 +270,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
 
     default:
       return state;
-  };
-};
+  }
+}
 
 export default schedule;

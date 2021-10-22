@@ -51,7 +51,7 @@ export default function Mypage(): ReactElement {
         }
       })
     }
-  };
+  }
 
   //유저 정보 받아오기
   const getUserInfo = () => {
@@ -65,7 +65,7 @@ export default function Mypage(): ReactElement {
         history.replace('/');
       }
     })
-  };
+  }
 
   return (
     <div className="contents" id="mypage">
