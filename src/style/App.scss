@@ -113,3 +113,27 @@ input[type="date"] {
   border: 1px solid $gray;
   border-radius: 5px;
 }
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+  opacity: 0.2;
+  text-align: center;
+  z-index: 3;
+  svg {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 15px);
+    animation: rotate_image 1s linear infinite;transform-origin: 50% 50%;
+  }
+}
+
+@keyframes rotate_image{ 
+  100% { 
+    transform: rotate(360deg);
+  } 
+}
