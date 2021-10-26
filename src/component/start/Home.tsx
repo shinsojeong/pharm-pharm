@@ -55,28 +55,21 @@ export default function Home(): ReactElement {
         result = result.concat(
           <tr key={week}>
             {
-              Array(7).fill(0).map((data, index) => {
+              Array(7).fill(0).map(({}, index) => {
                 let days = day.clone().startOf('year').week(week).startOf('week').add(index, 'day');
+                let tdId = "tdNone";
 
-                if(moment().format('YYYYMMDD') === days.format('YYYYMMDD')){
-                  return (
-                    <td key={index} id="tdRed" onClick={() => showMonthModal(days)}>
-                      <span>{days.format('D')}</span>
-                    </td>
-                  );
-                } else if (days.format('MM') !== day.format('MM')){
-                  return (
-                    <td key={index} id="tdGray" onClick={() => showMonthModal(days)}>
-                      <span>{days.format('D')}</span>
-                    </td>
-                  );
-                } else{
-                  return (
-                    <td key={index} id="tdNone" onClick={() => showMonthModal(days)}>
-                      <span>{days.format('D')}</span>
-                    </td>
-                  );
+                if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
+                  tdId = "tdRed";
+                } else if (days.format('MM') !== day.format('MM')) {
+                  tdId = "tdGray";
                 }
+
+                return (
+                  <td key={index} id={tdId} onClick={() => showMonthModal(days)}>
+                    <span>{days.format('D')}</span>
+                  </td>
+                );
               })
             }
           </tr>
@@ -92,7 +85,7 @@ export default function Home(): ReactElement {
     )
   }
 
-  const showMonthModal = (days) => {
+  const showMonthModal = (days: moment.Moment) => {
     setSelectedDate(days.year()+"년 "+(days.month()+1)+"월 "+days.date()+"일");
     //선택 일자 복용 정보 가져오기
     dispatch(
@@ -113,11 +106,11 @@ export default function Home(): ReactElement {
         {todaySche.length === 0 ?
           <p id="message">오늘의 복용 정보가 없습니다.</p>
         :
-          todaySche.map((data: scheduleInterface) => {
+          todaySche.map(({ sche_code, medi_name, medi_times, medi_num }: scheduleInterface) => {
             return (
-              <div className="todayListItem" key={data.sche_code} onClick={() => setModalState(true)}>
-                <p id="mediName">{data.medi_name}</p>
-                <p id="mediContent">{data.medi_times}회 {data.medi_num}정</p>
+              <div className="todayListItem" key={sche_code} onClick={() => setModalState(true)}>
+                <p id="mediName">{medi_name}</p>
+                <p id="mediContent">{medi_times}회 {medi_num}정</p>
               </div>
             )
           })

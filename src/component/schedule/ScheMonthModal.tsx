@@ -27,11 +27,11 @@ export default function ScheMonthModal({ setMonthModalState, today }): ReactElem
         <p id="message">해당 날짜의 복용 정보가 없습니다.</p>
       :
         <div id="monthScheItems">
-          { schedule.map((data: scheduleInterface) => {
+          { schedule.map(({ sche_code, medi_name, medi_time, medi_times, medi_num }: scheduleInterface) => {
             return (
-              <div className="monthScheItem" id={data.sche_code} key={data.sche_code} onClick={() => goDetail(data.sche_code)}>
-                <p>{data.medi_name} / {data.medi_times}회 {data.medi_num}정</p>
-                <ScheTimeView time={data.medi_time}/>
+              <div className="monthScheItem" id={sche_code} key={sche_code} onClick={() => goDetail(sche_code)}>
+                <p>{medi_name} / {medi_times}회 {medi_num}정</p>
+                <ScheTimeView time={medi_time}/>
               </div>
             )
           })}

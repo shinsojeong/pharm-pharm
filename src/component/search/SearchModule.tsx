@@ -34,10 +34,10 @@ export default function SearchModule({setRes}): ReactElement {
       withCredentials: true
     })
     .then((res) => {
-      const resData = (JSON.parse(res.data.data)).response;
+      const { body } = (JSON.parse(res.data.data)).response;
 
-      if (resData.body.items.item !== undefined) {
-        setRes(resData.body.items.item);
+      if (body.items.item !== undefined) {
+        setRes(body.items.item);
       } else {
         setRes([]);
         alert("일치하는 결과가 없습니다.");

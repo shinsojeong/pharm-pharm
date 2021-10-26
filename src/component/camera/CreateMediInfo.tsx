@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { changeTop } from '../../module/bar';
 import { createSchedule } from '../../module/schedule';
@@ -10,10 +10,14 @@ import { dayArr, timeArr } from '../utill/Reusable';
 
 export default function CreateMediInfo(): ReactElement {
   const location = useLocation();
-  const history = useHistory();
   const dispatch = useDispatch();
 
-  const propData: scheduleInterface = location.state;
+  const { 
+    medi_code, 
+    medi_name, 
+    medi_num, 
+    medi_times 
+  }: scheduleInterface = location.state;
   const [mediDate1, setMediDate1] = useState("");
   const [mediDate2, setMediDate2] = useState("");
   const [mediDay, setMediDay] = useState([]);
@@ -34,7 +38,7 @@ export default function CreateMediInfo(): ReactElement {
 
   //function
   //checkbox changeHandler
-  const changeHandler = (type: string, checked: boolean, id: string) => {
+  const changeHandler = (type: string, checked: boolean, id: any) => {
     if (type === "mediDay") {
       if (checked) {
         setMediDay([...mediDay, id]);
@@ -56,14 +60,14 @@ export default function CreateMediInfo(): ReactElement {
   const submit = () => {
     dispatch(
       createSchedule({
-        medi_code: propData.medi_code,
-        medi_name: propData.medi_name,
+        medi_code: medi_code,
+        medi_name: medi_name,
         medi_date1: mediDate1.toString(),
         medi_date2: mediDate2.toString(),
         medi_day: mediDay.toString(),
         medi_time: mediTime.toString(),
-        medi_times: propData.medi_times,
-        medi_num: propData.medi_num
+        medi_times: medi_times,
+        medi_num: medi_num
       })
     )
   }
@@ -74,15 +78,15 @@ export default function CreateMediInfo(): ReactElement {
         <tbody>
           <tr>
             <td id="tdTitle">품목기준코드</td>
-            <td id="tdContent">{propData.medi_code}</td>
+            <td id="tdContent">{medi_code}</td>
           </tr>
           <tr>
             <td id="tdTitle">제품명</td>
-            <td id="tdContent">{propData.medi_name}</td>
+            <td id="tdContent">{medi_name}</td>
           </tr>
           <tr>
             <td id="tdTitle">복용개수/횟수</td>
-            <td id="tdContent">{propData.medi_num}정씩 {propData.medi_times}회</td>
+            <td id="tdContent">{medi_num}정씩 {medi_times}회</td>
           </tr>
           <tr>
             <td id="tdTitle">복용시작일</td>
@@ -99,14 +103,14 @@ export default function CreateMediInfo(): ReactElement {
           <tr>
             <td id="tdTitle">복용요일</td>
             <td id="tdDay">
-              {dayArr.map((data) => {
+              {dayArr.map(({ value, day }) => {
                 return (
-                  <span key={data.value}>
-                    <label htmlFor={data.value.toString()} id={mediDay.includes(data.value) ? "checked" : "none"}>{data.day}</label>
-                    <input type="checkbox" name={data.value.toString()} 
-                      onChange={(e) => changeHandler("mediDay", e.target.checked, data.value)} 
-                      value={data.value} id={data.value.toString()}
-                      checked={mediDay.includes(data.value) ? true : false}>
+                  <span key={value}>
+                    <label htmlFor={value.toString()} id={mediDay.includes(value) ? "checked" : "none"}>{day}</label>
+                    <input type="checkbox" name={value.toString()} 
+                      onChange={(e) => changeHandler("mediDay", e.target.checked, value)} 
+                      value={value} id={value.toString()}
+                      checked={mediDay.includes(value) ? true : false}>
                     </input>
                   </span>
                 )
@@ -116,14 +120,14 @@ export default function CreateMediInfo(): ReactElement {
           <tr>
             <td id="tdTitle">복용시간</td>
             <td id="tdTime">
-              {timeArray.map((data) => {
+              {timeArray.map(({ value, time }) => {
                 return (
-                  <span key={data.value}>
-                    <label htmlFor={data.value.toString()} id={mediTime.includes(data.value) ? "checked" : "none"}>{data.time}</label>
-                    <input type="checkbox" name={data.value.toString()} 
-                      onChange={(e) => changeHandler("mediTime", e.target.checked, data.value)} 
-                      value={data.value} id={data.value.toString()}
-                      checked={mediTime.includes(data.value) ? true : false}>
+                  <span key={value}>
+                    <label htmlFor={value.toString()} id={mediTime.includes(value) ? "checked" : "none"}>{time}</label>
+                    <input type="checkbox" name={value.toString()} 
+                      onChange={(e) => changeHandler("mediTime", e.target.checked, value)} 
+                      value={value} id={value.toString()}
+                      checked={mediTime.includes(value) ? true : false}>
                     </input>
                   </span>
                 )

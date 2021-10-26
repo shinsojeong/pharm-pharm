@@ -48,14 +48,14 @@ export default function Camera(): ReactElement {
         withCredentials: true
       })
       .then((res) => {
-        const resData = (JSON.parse(res.data.data)).response;
+        const { header, body } = (JSON.parse(res.data.data)).response;
 
-        if (resData.header.resultCode._text == '00') {
+        if (header.resultCode._text == '00') {
           history.push({
             pathname: "/user/create-medi-info",
             state: {
-              medi_code: resData.body.items.item.itemSeq._text,
-              medi_name: resData.body.items.item.itemName._text,
+              medi_code: body.items.item.itemSeq._text,
+              medi_name: body.items.item.itemName._text,
               medi_times: timeNumStr[1][0],
               medi_num: timeNumStr[1][3]
             }

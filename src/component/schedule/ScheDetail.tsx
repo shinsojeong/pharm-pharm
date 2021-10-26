@@ -27,14 +27,24 @@ export default function ScheDetail(): ReactElement {
     )
   }, []);
 
-  const data = useSelector((state: RootState) => state.schedule.selected_schedule);
+  const { 
+    medi_code, 
+    medi_date1, 
+    medi_date2, 
+    medi_day, 
+    medi_name, 
+    medi_num, 
+    medi_time, 
+    medi_times, 
+    sche_code 
+  } = useSelector((state: RootState) => state.schedule.selected_schedule);
   const [updateState, setUpdateState] = useState(false);
-  const [mediDate1, setMediDate1] = useState(data.medi_date1);
-  const [mediDate2, setMediDate2] = useState(data.medi_date2);
-  const [mediDay, setMediDay] = useState((data.medi_day).split(','));
-  const [mediTime, setMediTime] = useState((data.medi_time).split(','));
-  const [mediTimes, setMediTimes] = useState(data.medi_times);
-  const [mediNum, setMediNum] = useState(data.medi_num);
+  const [mediDate1, setMediDate1] = useState(medi_date1);
+  const [mediDate2, setMediDate2] = useState(medi_date2);
+  const [mediDay, setMediDay] = useState((medi_day).split(','));
+  const [mediTime, setMediTime] = useState((medi_time).split(','));
+  const [mediTimes, setMediTimes] = useState(medi_times);
+  const [mediNum, setMediNum] = useState(medi_num);
   const timeArray = timeArr();
 
   //function
@@ -48,9 +58,9 @@ export default function ScheDetail(): ReactElement {
     await dispatch(
       updateSchedule(
         {
-          sche_code: data.sche_code,
-          medi_code: data.medi_code, 
-          medi_name: data.medi_name,
+          sche_code: sche_code,
+          medi_code: medi_code, 
+          medi_name: medi_name,
           medi_date1: mediDate1,
           medi_date2: mediDate2,
           medi_day: mediDay.toString(),
@@ -67,7 +77,7 @@ export default function ScheDetail(): ReactElement {
   const deleteSche = () => {
     dispatch(
       deleteSchedule(
-        { sche_code: data.sche_code }
+        { sche_code: sche_code }
       )
     );
   }
@@ -97,13 +107,13 @@ export default function ScheDetail(): ReactElement {
         <tbody>
           <tr>
             <td id="tdTitle">제품명</td>
-            <td id="tdContent">{data.medi_name}</td>
+            <td id="tdContent">{medi_name}</td>
           </tr>
           <tr>
             <td id="tdTitle">복용 시작일</td>
             <td id="tdContent">
               {!updateState ? 
-                data.medi_date1.slice(0,10)
+                medi_date1.slice(0,10)
               :
                 <input type="date" onChange={(e) => setMediDate1(e.target.value)} value={mediDate1.slice(0,10)}/>
               }
@@ -113,7 +123,7 @@ export default function ScheDetail(): ReactElement {
             <td id="tdTitle">복용 종료일</td>
             <td id="tdContent">
               {!updateState ?
-                data.medi_date2.slice(0,10)
+                medi_date2.slice(0,10)
               :
                 <input type="date" onChange={(e) => setMediDate2(e.target.value)} value={mediDate2.slice(0,10)}/>
               }
@@ -144,14 +154,14 @@ export default function ScheDetail(): ReactElement {
                   })
                 )
               :
-                dayArr.map((data) => {
+                dayArr.map(({ value, day }) => {
                   return (
-                    <span key={data.value}>
-                      <label htmlFor={data.value.toString()} id={mediDay.includes(data.value.toString()) ? "checked" : "none"}>{data.day}</label>
-                      <input type="checkbox" name={data.value.toString()} 
-                        onChange={(e) => changeHandler("mediDay", e.target.checked, data.value.toString())} 
-                        value={data.value} id={data.value.toString()}
-                        checked={mediDay.includes(data.value.toString()) ? true : false}>
+                    <span key={value}>
+                      <label htmlFor={value.toString()} id={mediDay.includes(value.toString()) ? "checked" : "none"}>{day}</label>
+                      <input type="checkbox" name={value.toString()} 
+                        onChange={(e) => changeHandler("mediDay", e.target.checked, value.toString())} 
+                        value={value} id={value.toString()}
+                        checked={mediDay.includes(value.toString()) ? true : false}>
                       </input>
                     </span>
                   )
@@ -165,16 +175,16 @@ export default function ScheDetail(): ReactElement {
           <tr>
             <td colSpan={2} id="tdTime">
               {!updateState ?
-                <ScheTimeView time={(data.medi_time).toString()}/>
+                <ScheTimeView time={(medi_time).toString()}/>
               :
-                timeArray.map((data) => {
+                timeArray.map(({ value, time }) => {
                   return (
-                    <span key={data.value}>
-                      <label htmlFor={data.value.toString()} id={mediTime.includes(data.value.toString()) ? "checked" : "none"}>{data.time}</label>
-                      <input type="checkbox" name={data.value.toString()} 
-                        onChange={(e) => changeHandler("mediTime", e.target.checked, data.value.toString())} 
-                        value={data.value} id={data.value.toString()}
-                        checked={mediTime.includes(data.value.toString()) ? true : false}>
+                    <span key={value}>
+                      <label htmlFor={value.toString()} id={mediTime.includes(value.toString()) ? "checked" : "none"}>{time}</label>
+                      <input type="checkbox" name={value.toString()} 
+                        onChange={(e) => changeHandler("mediTime", e.target.checked, value.toString())} 
+                        value={value} id={value.toString()}
+                        checked={mediTime.includes(value.toString()) ? true : false}>
                       </input>
                     </span>
                   )
@@ -186,7 +196,7 @@ export default function ScheDetail(): ReactElement {
             <td id="tdTitle">복용 횟수</td>
             <td id="tdContent">
               {!updateState ?
-                <p>1일 {data.medi_times}회</p>
+                <p>1일 {medi_times}회</p>
               :
                 <input type="text" onChange={(e) => setMediTimes(parseInt(e.target.value))} defaultValue={mediTimes.toString()}/>
               }
@@ -196,7 +206,7 @@ export default function ScheDetail(): ReactElement {
             <td id="tdTitle">복용 개수</td>
             <td id="tdContent">
               {!updateState ?
-                <p>1회 {data.medi_num}정</p>
+                <p>1회 {medi_num}정</p>
               :
                 <input type="text" onChange={(e) => setMediNum(parseInt(e.target.value))} defaultValue={mediNum.toString()}/>
               }

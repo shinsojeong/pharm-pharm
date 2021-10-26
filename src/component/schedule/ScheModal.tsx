@@ -26,12 +26,12 @@ export default function ScheModal({ setModalState }): ReactElement {
         <p>오늘의 복용 정보가 없습니다.</p>
       :
         <div id="todayScheItems">
-          { today_schedule.map((data: scheduleInterface) => {
+          { today_schedule.map(({ sche_code, medi_name, medi_time, medi_times, medi_num}: scheduleInterface) => {
               return (
-                <div className="todayScheItem" id={data.sche_code} key={data.sche_code} onClick={() => goDetail(data.sche_code)}>
-                  <p id="name">{data.medi_name}</p>
-                  <p id="content">{data.medi_times}회 {data.medi_num}정</p>
-                  <ScheTimeView time={data.medi_time}/>
+                <div className="todayScheItem" id={sche_code} key={sche_code} onClick={() => goDetail(sche_code)}>
+                  <p id="name">{medi_name}</p>
+                  <p id="content">{medi_times}회 {medi_num}정</p>
+                  <ScheTimeView time={medi_time}/>
                 </div>
               )
             })
