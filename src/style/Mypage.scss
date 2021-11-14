@@ -3,19 +3,15 @@
 #mypage {
   text-align: center;
   #profile {
+    @include marginPadding(0 auto, 40px 0px 30px 0px);
+    @include initFont($font-x-small, $font-title, bold);
     width: 80%;
     text-align: center;
-    margin: 0 auto;
-    padding: 40px 0px 30px 0px;
-    font-weight: bold;
-    font-size: $font-title;
   }
   #logout {
-    padding: 10px;
-    margin: 20px;
-    font-weight: bold;
+    @include marginPadding(10px, 20px);
+    @include initFont($font-x-small, $white, bold);
     border-radius: 10px;
-    color: $white;
     background-color: $back1;
   }
 }

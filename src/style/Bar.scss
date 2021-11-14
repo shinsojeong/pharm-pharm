@@ -1,9 +1,7 @@
 @import './valiables.scss';
 
 .top {
-  width: 100%;
-  height: $height-top;
-  top: 0;
+  @include initSize(100%, $height-top, 0);
   background-color: $back1;
   position: fixed;
   #left, #center, #right {
@@ -37,34 +35,27 @@
 }
 
 .nav {
-  width: 100%;
-  height: 74px;
-  bottom: 5px;
+  @include initSize(100%, 74px, auto, auto, 5px);
   position: fixed;
   background-color: none;
   .navWrap {
-    width: 90%;
-    height: 56px;
+    @include initSize(90%, 56px);
+    @include initBorder(30px, 2px, solid, $back1);
     margin: 0 auto;
-    border: 2px solid $back1;
-    border-radius: 30px;
     background-color: $white;
     text-align: center;
     .navItem {
-      width: $height-bottom;
-      height: $height-bottom;
+      @include initSize($height-bottom, $height-bottom, -7px);
       margin: 0 9px;
       display: inline-block;
-      top: -7px;
       position: relative;
       * {
         margin-top: 5px;
       }
     }
     #selected {
+      @include initBorder(37px, 7px, solid, $back1);
       background-color: $back1;
-      border-radius: 37px;
-      border: 7px solid $back1;
       svg {
         color: $white;
       }

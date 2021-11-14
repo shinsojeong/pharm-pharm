@@ -5,12 +5,37 @@ $white: #fefefe;
 $gray: #b1b1b1;
 $black: #555555;
 
-$font-title: 20px;
-$font-content-title: 18px;
-$font-middle: 16px;
-$font-small: 15px;
-$font-x-small: 14px;
-$font-xx-small: 13px;
+$font-title: 17px;
+$font-content-title: 16px;
+$font-middle: 15px;
+$font-small: 14px;
+$font-x-small: 13px;
+$font-xx-small: 12px;
 
 $height-top: 60px;
 $height-bottom: 60px;
+
+@mixin initSize($width:100%, $height:auto, $top:auto, $right:auto, $bottom:auto, $left:auto) {
+  width: $width;
+  height: $height;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin marginPadding($margin:0 auto, $padding:0 auto) {
+  margin: $margin;
+  padding: $padding;
+}
+
+@mixin initFont($size:$font-x-small, $color:$black, $bold:normal) {
+  font-size: $size;
+  color: $color;
+  font-weight: $bold;
+}
+
+@mixin initBorder($radius:0, $fixel:1px, $style:solid, $color:$gray) {
+  border-radius: $radius;
+  border: $fixel $style $color;
+}

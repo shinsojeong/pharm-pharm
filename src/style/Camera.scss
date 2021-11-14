@@ -5,10 +5,9 @@
   #inputDiv {
     margin-top: 170px;
     #fileBtn {
+      @include initFont($font-x-small, $white, bold);
       padding: 20px;
       background-color: $back1;
-      color: $white;
-      font-weight: bold;
       border-radius: 10px;
     }
     #inputFile {

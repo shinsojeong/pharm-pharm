@@ -1,49 +1,37 @@
 @import './Valiables.scss';
 
 html, body, #root {
-  margin: 0;
-  padding: 0;
+  @include marginPadding(0,0);
   top: 0;
 }
 
 .contents {
+  @include marginPadding(70px auto, 0 0 100 0);
   width: 90%;
-  margin: 0 auto;
-  margin-top: 70px;
-  padding-bottom: 100px;
 }
 
 .modal {
-  width: 90vw;
-  height: 600px;
+  @include initSize(90vw, 600px, 40px);
+  @include initBorder(10px);
   z-index: 2;
   position: fixed;
-  top: 40px;
   background-color: $white;
-  border: 1px solid $gray;
-  border-radius: 10px;
   box-shadow: 3px 3px 3px $gray;
   overflow-y: scroll;
   #title {
+    @include marginPadding(0, 10px 0);
+    @include initFont(16px, $white, bolder);
     width: 90%;
-    color: $white;
     text-align: center;
-    font-size: 16px;
-    font-weight: bolder;
     position: fixed;
-    margin: 0px;
-    padding: 10px 0px;
     background-color: $gray;
     border-bottom: 1px solid $gray;
     border-radius: 10px 10px 0 0;
   }
   #close {
-    width: 10%;
+    @include initFont($font-x-small, $white, bolder);
+    @include initSize(10%, auto, 60px, 0px);
     position: fixed;
-    top: 60px;
-    right: 0px;
-    color: $white;
-    font-weight: bolder;
   }
   #message {
     margin: 100px auto;
@@ -52,19 +40,16 @@ html, body, #root {
     margin-top: 60px;
     .todayScheItem, .monthScheItem {
       p {
-        padding-left: 10px;
-        margin: 5px 0;
+        @include marginPadding(5px 0, 0 0 0 10px);
       }
+      @include marginPadding((0px auto), (18px 0));
       width: 96%;
-      padding: 18px 0;
-      margin: 0px auto;
       background-color: $white;
       border-bottom: 1px solid $gray;
     }
   }
   table {
-    margin-top: 60px;
-    padding: 3px;
+    @include marginPadding(60px 0 0 0, 3px);
     tr * {
       border-bottom: 1px solid $gray;
       padding: 5px 0px;
@@ -81,11 +66,9 @@ html, body, #root {
 }
 
 #title {
+  @include initFont($font-content-title, $white, bold);
   height: 40px;
   line-height: 40px;
-  font-size: $font-content-title;
-  font-weight: bold;
-  color: $white;
   background-color: $back2;
   border-radius: 10px;
   margin: 5 auto;
@@ -97,29 +80,22 @@ html, body, #root {
 }
 
 input[type="text"] {
-  border: 1px solid $gray;
-  border-radius: 5px;
+  @include initBorder(5px);
 }
 
 button {
-  border: 1px solid $gray;
-  border-radius: 5px;
+  @include initBorder(5px);
 }
 
 input[type="date"] {
-  width: 160px;
-  height: 30px;
+  @include initSize(160px, 30px);
+  @include initBorder(5px);
   color: $black;
-  border: 1px solid $gray;
-  border-radius: 5px;
 }
 
 .loading {
-  width: 100vw;
-  height: 100vh;
+  @include initSize(100vw, 100vh, 0, auto, auto, 0);
   position: absolute;
-  top: 0;
-  left: 0;
   background-color: white;
   opacity: 0.2;
   text-align: center;
@@ -128,7 +104,8 @@ input[type="date"] {
     position: absolute;
     top: calc(50% - 30px);
     left: calc(50% - 15px);
-    animation: rotate_image 1s linear infinite;transform-origin: 50% 50%;
+    animation: rotate_image 1s linear infinite;
+    transform-origin: 50% 50%;
   }
 }
 
