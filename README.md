@@ -1,1 +1,1 @@
-![pharm-pharm](https://user-images.githubusercontent.com/61176569/141734375-e82edbd9-f0b6-422f-bf80-25ebf478eef1.png)
+![pharm-pharm](https://user-images.githubusercontent.com/61176569/142865056-40994d48-a866-4c35-b03d-4361ecddb7d6.png)
