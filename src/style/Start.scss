@@ -57,7 +57,8 @@
       margin: 0 auto;
       text-align: center;
       td {
-        @include initSize(40px, 25px);
+        @include initSize(40px, 40px);
+        @include initBorder(40px, 1px, solid);
       }
       #tdRed {
         background-color: $back1;

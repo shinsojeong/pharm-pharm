@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { debounce } from 'lodash';
 
 import { getSchedule } from '../../module/schedule';
 import { RootState } from '../../module/store';
@@ -14,14 +14,14 @@ export default function ScheModal({ setModalState }): ReactElement {
 
   const today_schedule = useSelector((state: RootState) => state.schedule.today_schedule);
 
-  const goDetail = (sche_code: string) => {
+  const goDetail = debounce((sche_code: string) => {
     dispatch(getSchedule({ sche_code }));
-  }
+  }, 800)
 
   return (
     <div className="modal" id="scheModal">
       <p id="title">오늘의 복용 정보</p>
-      <span id="close" onClick={setModalState}>X</span>
+      <span id="close" onClick={() => setModalState()}>X</span>
       {today_schedule.length === 0 ? 
         <p>오늘의 복용 정보가 없습니다.</p>
       :

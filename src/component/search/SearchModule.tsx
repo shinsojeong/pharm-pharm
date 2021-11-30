@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { debounce } from 'lodash';
 import { changeTop } from '../../module/bar';
 
 export default function SearchModule({setRes}): ReactElement {
@@ -26,7 +26,7 @@ export default function SearchModule({setRes}): ReactElement {
 
   //function
   //검색
-  const search = () => {
+  const search = debounce(() => {
     axios.post(`${url}/drug/get_drug_info`, {
       itemName: itemName,
       itemSeq: itemSeq
@@ -43,7 +43,7 @@ export default function SearchModule({setRes}): ReactElement {
         alert("일치하는 결과가 없습니다.");
       }
     })
-  }
+  }, 800)
 
   return (
     <div className="module" id="searchModule">

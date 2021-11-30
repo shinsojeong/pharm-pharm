@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { debounce } from 'lodash';
 
 import { changeTop, resetBar } from '../../module/bar';
 import { resetSchedule } from '../../module/schedule';
@@ -37,7 +37,7 @@ export default function Mypage(): ReactElement {
 
   //function
   //로그아웃
-  const logout = () => {
+  const logout = debounce(() => {
     if (window.confirm('로그아웃 하시겠습니까?')) {
       axios.get(`${url}/auth/logout`, {
         withCredentials: true
@@ -51,7 +51,7 @@ export default function Mypage(): ReactElement {
         }
       })
     }
-  }
+  }, 800)
 
   //유저 정보 받아오기
   const getUserInfo = () => {

@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { debounce } from 'lodash';
 
 import { RootState } from '../../module/store';
 import { updateSchedule, deleteSchedule } from '../../module/schedule';
@@ -54,7 +54,7 @@ export default function ScheDetail(): ReactElement {
   }
 
   //업데이트
-  const updateSche = async() => {
+  const updateSche = debounce(async() => {
     await dispatch(
       updateSchedule(
         {
@@ -71,16 +71,16 @@ export default function ScheDetail(): ReactElement {
       )
     );
     setUpdateState(false);
-  }
+  }, 800)
 
   //삭제
-  const deleteSche = () => {
+  const deleteSche = debounce(() => {
     dispatch(
       deleteSchedule(
         { sche_code: sche_code }
       )
     );
-  }
+  }, 800)
 
   //checkbox changeHandler
   const changeHandler = (type: string, checked: boolean, id: string) => {

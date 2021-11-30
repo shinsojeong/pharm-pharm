@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
+import { debounce } from 'lodash';
 
-import { changeTop } from '../../module/bar';
+import { changeTop, changeNav } from '../../module/bar';
 import { RootState } from '../../module/store';
 import { getScheduleList, getTodaySchedule } from '../../module/schedule';
 import { scheduleInterface } from '../../module/type/scheType';
@@ -34,19 +34,24 @@ export default function Home(): ReactElement {
         rfunc: null
       })
     );
+    dispatch(
+      changeNav({
+        selected: "home"
+      })
+    )
     getTodaySche(); //오늘의 스케쥴 가져오기
   }, []);
 
   //function
   //캘린더 이전달로 변경
-  const goPrev = () => {
+  const goPrev = debounce(() => {
     setDay(day.clone().subtract(1, 'month'));
-  }
+  }, 800)
 
   //캘린더 다음달로 변경
-  const goNext = () => {
+  const goNext = debounce(() => {
     setDay(day.clone().add(1, 'month'));
-  }
+  }, 800)
 
   //해당 달 캘린더 가져오기
   const getCalendar = () => {
@@ -85,7 +90,7 @@ export default function Home(): ReactElement {
     )
   }
 
-  const showMonthModal = (days: moment.Moment) => {
+  const showMonthModal = debounce((days: moment.Moment) => {
     setSelectedDate(days.year()+"년 "+(days.month()+1)+"월 "+days.date()+"일");
     //선택 일자 복용 정보 가져오기
     dispatch(
@@ -97,7 +102,7 @@ export default function Home(): ReactElement {
         }
     ))
     setMonthModalState(true);
-  }
+  }, 800)
 
   return (
     <div className="contents" id="home">

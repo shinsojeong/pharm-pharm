@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';

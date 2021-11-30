@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { ReactElement, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
+import { debounce } from 'lodash';
 import SearchDetail from './SearchDetail';
 import SearchModule from './SearchModule';
 import Search_engine_Flatline from '../../source/Search_engine_Flatline.png';
@@ -13,10 +13,10 @@ export default function Search(): ReactElement {
 
   //function
   //상세정보 모달 띄우기
-  const goDetail = (item: object) => {
+  const goDetail = debounce((item: object) => {
     setDetail(item);
     setModalState(true);
-  }
+  }, 800)
 
   return (
     <div className="contents" id="search">

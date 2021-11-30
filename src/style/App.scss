@@ -2,12 +2,12 @@
 
 html, body, #root {
   @include marginPadding(0,0);
-  top: 0;
 }
 
 .contents {
   @include marginPadding(70px auto, 0 0 100 0);
   width: 90%;
+  animation: fadein 1s linear;
 }
 
 .modal {

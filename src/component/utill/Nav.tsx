@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ReactElement } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { debounce } from 'lodash';
 
 import { changeNav } from '../../module/bar';
 import { RootState } from '../../module/store';
@@ -13,10 +14,10 @@ export default function Nav(): ReactElement {
   const history = useHistory();
   const nav = useSelector((state: RootState) => state.bar.nav.selected);
   
-  function goTo(selected: string) {
+  const goTo = debounce((selected: string) => {
     dispatch(changeNav({selected}))
     history.replace(`/user/${selected}`)
-  }
+  }, 800)
 
   return (
     <div className="nav">

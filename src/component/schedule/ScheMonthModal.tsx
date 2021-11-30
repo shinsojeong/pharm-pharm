@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { debounce } from 'lodash';
 
 import { getSchedule } from '../../module/schedule';
 import { RootState } from '../../module/store';
@@ -15,14 +15,14 @@ export default function ScheMonthModal({ setMonthModalState, today }): ReactElem
 
   //function
   //상세정보로 이동
-  const goDetail = (sche_code: string) => {
+  const goDetail = debounce((sche_code: string) => {
     dispatch(getSchedule({ sche_code }));
-  }
+  }, 800)
 
   return (
     <div className="modal" id="scheMonthModal">
       <p id="title">{today}</p>
-      <span id="close" onClick={setMonthModalState}>X</span>
+      <span id="close" onClick={() => setMonthModalState()}>X</span>
       {schedule === undefined || schedule.length === 0 ? 
         <p id="message">해당 날짜의 복용 정보가 없습니다.</p>
       :

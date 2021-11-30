@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { debounce } from 'lodash';
 
 import { changeTop } from '../../module/bar';
 import { createSchedule } from '../../module/schedule';
@@ -57,7 +57,7 @@ export default function CreateMediInfo(): ReactElement {
   }
 
   //제출
-  const submit = () => {
+  const submit = debounce(() => {
     dispatch(
       createSchedule({
         medi_code: medi_code,
@@ -70,7 +70,7 @@ export default function CreateMediInfo(): ReactElement {
         medi_num: medi_num
       })
     )
-  }
+  }, 800)
 
   return (
     <div className="contents" id="createMediInfo">

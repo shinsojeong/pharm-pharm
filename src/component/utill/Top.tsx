@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
+import { debounce } from 'lodash';
 
 import '../../style/Bar.scss';
 import { RootState } from '../../module/store';
