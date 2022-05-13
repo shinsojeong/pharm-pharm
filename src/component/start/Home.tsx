@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { debounce } from 'lodash';
 
@@ -14,7 +14,7 @@ import '../../style/Start.scss';
 
 export default function Home(): ReactElement {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [day, setDay] = useState(moment());
   const [modalState, setModalState] = useState(false);

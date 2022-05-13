@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Home from './start/Home';
 import Camera from './camera/Camera';
@@ -15,15 +15,15 @@ export default function User() {
   return (
     <div className="User">
       <Top/>
-      <Switch>
-        <Route exact path="/user/home" component={Home}/>
-        <Route exact path="/user/camera" component={Camera}/>
-        <Route exact path="/user/create-medi-info" component={CreateMediInfo}/>
-        <Route exact path="/user/sche-detail" component={ScheDetail}/>
-        <Route exact path="/user/search" component={Search}/>
-        <Route exact path="/user/search-detail" component={SearchDetail}/>
-        <Route exact path="/user/mypage" component={Mypage}/>
-      </Switch>
+        <Routes>
+          <Route path="/home" element={<Home/>}/>
+          <Route path="/camera" element={<Camera/>}/>
+          <Route path="/create-medi-info" element={<CreateMediInfo/>}/>
+          <Route path="/sche-detail" element={<ScheDetail/>}/>
+          <Route path="/search" element={<Search/>}/>
+          <Route path="/search-detail" element={<SearchDetail data="" setModalState/>}/>
+          <Route path="/mypage" element={<Mypage/>}/>
+        </Routes>
       <Nav/>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 
 import { changeTop, resetBar } from '../../module/bar';
@@ -11,7 +11,7 @@ import Profile_analysis_Flatline from '../../source/Profile_analysis_Flatline.pn
 import '../../style/Mypage.scss';
 
 export default function Mypage(): ReactElement {
-  const history = useHistory();
+  const history = useNavigate();
   const dispatch = useDispatch();
   
   const url = process.env.REACT_APP_SERVER;

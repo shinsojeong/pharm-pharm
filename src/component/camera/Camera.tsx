@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Tesseract from 'tesseract.js';
 
 import { changeTop } from '../../module/bar';
@@ -9,7 +9,7 @@ import Files_And_Folder_Flatline from '../../source/Files_And_Folder_Flatline.pn
 import '../../style/Camera.scss';
 
 export default function Camera(): ReactElement {
-  const history = useHistory();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const url = process.env.REACT_APP_SERVER;
 

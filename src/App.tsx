@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { RootState } from './module/store';
@@ -15,10 +15,10 @@ export default function App() {
 
   return (
     <div className="App">
-      <Switch>
-        <Route exact path="/" component={Login}/>
-        <Route path="/user" component={User}/>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/user/*" element={<User/>}/>
+      </Routes>
       { loading && <Loading/> }
     </div>
   );
