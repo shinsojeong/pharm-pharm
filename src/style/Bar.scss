@@ -2,6 +2,7 @@
 
 .top {
   @include initSize(100%, $height-top, 0);
+  padding-top: 15px;
   background-color: $back1;
   position: fixed;
   #left, #center, #right {

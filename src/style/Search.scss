@@ -3,11 +3,11 @@
 #search {
   #searchModule {
     input[type="text"] {
-      @include initSize(100%, 28px);
+      @include initSize(100%, 35px);
       margin: 5px auto;
     }
     button {
-      @include initSize(calc(100% + 6px), 30px);
+      @include initSize(calc(100% + 6px), 40px);
       background-color: $back2;
       color: $white;
     }
@@ -17,20 +17,27 @@
     margin-top: 10px;
     table {
       width: 100%;
+      padding-top: 20px;
       border-collapse: separate;
       border-spacing: 0 7px;
       th {
-        font-size: $font-small;
+        font-size: $font-middle;
       }
       td {
-        font-size: $font-x-small;
-        height: 25px;
+        font-size: $font-middle;
+        height: 35px;
+        padding: 0 2px;
       }
       #btn {
         color: $white;
         background-color: $back2;
+        width: 70px;
         border-radius: 5px;
       }
+    }
+
+    #notResult {
+      padding-top: 50px;
     }
   }
 }

@@ -52,7 +52,7 @@ export default function Search(): ReactElement {
             </tbody>
           </table>
         :
-          <div>
+          <div id="notResult">
             <img src={Search_engine_Flatline} width="250px"/>
             <p id="message">검색 결과가 없습니다.</p>
           </div>

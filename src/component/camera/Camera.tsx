@@ -9,7 +9,7 @@ import Files_And_Folder_Flatline from '../../source/Files_And_Folder_Flatline.pn
 import '../../style/Camera.scss';
 
 export default function Camera(): ReactElement {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const url = process.env.REACT_APP_SERVER;
 
@@ -50,15 +50,17 @@ export default function Camera(): ReactElement {
         const { header, body } = (JSON.parse(res.data.data)).response;
 
         if (header.resultCode._text == '00') {
-          history.push({
-            pathname: "/user/create-medi-info",
-            state: {
-              medi_code: body.items.item.itemSeq._text,
-              medi_name: body.items.item.itemName._text,
-              medi_times: timeNumStr[1][0],
-              medi_num: timeNumStr[1][3]
+          navigate(
+            "/user/create-medi-info",
+            {
+              state: {
+                medi_code: body.items.item.itemSeq._text,
+                medi_name: body.items.item.itemName._text,
+                medi_times: timeNumStr[1][0],
+                medi_num: timeNumStr[1][3]
+              }
             }
-          });
+          );
         } else {
           alert("일치하는 결과가 없습니다.");
         }

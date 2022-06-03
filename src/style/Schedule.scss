@@ -5,7 +5,7 @@
   padding: 10px 0;
   .timeItem {
     @include initSize(18px, 18px);
-    @include initBorder(18px, 2px, solid, $back1);
+    @include initBorder(0px, 1px, solid, #ffffff);
     line-height: 18px;
     margin: 1px;
     text-align: center;
@@ -58,14 +58,14 @@
   table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 10px;
+    border-spacing: 0 18px;
     #tdTitle {
-      @include initFont(14px, $black, bold);
+      @include initFont(16px, $black, bold);
       width: 90px;
       text-align: right;
     }
     #tdContent {
-      @include initFont($font-small, $black);
+      @include initFont($font-middle, $black);
     }
   }
   p {
@@ -73,6 +73,7 @@
   }
   .timeTitle {
     text-align: center;
+    margin: 5px auto;
   }
   .btnDiv {
     text-align: center;
@@ -106,12 +107,12 @@
     border-collapse: separate;
     border-spacing: 0 10px;
     #tdTitle {
-      @include initFont($font-small, $black, bold);
+      @include initFont($font-middle, $black, bold);
       width: 100px;
       text-align: right;
     }
     #tdContent {
-      @include initFont($font-x-small, $black);
+      @include initFont($font-small, $black);
     }
   }
   button {
@@ -123,10 +124,10 @@
 }
 
 #tdDay, #tdTime {
-  font-size: $font-x-small;
+  font-size: $font-middle;
   label {
     @include initSize(25px, 25px);
-    @include initBorder(25px, 2px, solid, $back1);
+    @include initBorder(0px, 2px, solid, #ffffff);
     display: inline-block;
     line-height: 25px;
     text-align: center;

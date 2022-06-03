@@ -10,6 +10,7 @@ import { getScheduleList, getTodaySchedule } from '../../module/schedule';
 import { scheduleInterface } from '../../module/type/scheType';
 import ScheModal from '../schedule/ScheModal';
 import ScheMonthModal from '../schedule/ScheMonthModal';
+import inform from '../../source/inform.png';
 import '../../style/Start.scss';
 
 export default function Home(): ReactElement {
@@ -105,25 +106,32 @@ export default function Home(): ReactElement {
   }, 800)
 
   return (
-    <div className="contents" id="home">
+    <div className="contents" id="startContents">
       <div className="items" id="todayList">
-        <p id="title">#  오늘의 복용 정보  #</p>
+        <p id="title">오늘의 복용 정보</p>
         {todaySche.length === 0 ?
-          <p id="message">오늘의 복용 정보가 없습니다.</p>
+          <div id="nSchedule">
+            <img src={inform} width="250px"/>
+            <p id="message">오늘의 복용 정보가 없습니다.</p>
+          </div>
         :
-          todaySche.map(({ sche_code, medi_name, medi_times, medi_num }: scheduleInterface) => {
-            return (
-              <div className="todayListItem" key={sche_code} onClick={() => setModalState(true)}>
-                <p id="mediName">{medi_name}</p>
-                <p id="mediContent">{medi_times}회 {medi_num}정</p>
-              </div>
-            )
-          })
+          <div id="ySchedule">
+            {
+              todaySche.map(({ sche_code, medi_name, medi_times, medi_num }: scheduleInterface) => {
+                return (
+                  <div className="todayListItem" key={sche_code} onClick={() => setModalState(true)}>
+                    <p id="mediName">{medi_name}</p>
+                    <p id="mediContent">{medi_times}회 {medi_num}정</p>
+                  </div>
+                )
+              })
+            }
+          </div>
         }
       </div>
 
       <div className="items" id="calendar">
-        <p id="title">#  월별 복용 정보  #</p>
+        <p id="title">월별 복용 정보</p>
         <div id="monthPick">
           <button onClick={goPrev} className="calendarBtn">&lt;</button>
           <span>{day.format('YYYY년 MM월')}</span>

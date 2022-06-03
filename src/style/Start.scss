@@ -5,37 +5,49 @@
   background-color: #ffaa31;
   text-align: center;
   #logo {
-    width: 70%;
+    width: 50%;
     display: inline-block;
-    margin: 50px 0 40px 0;
+    padding: 0 25%;
+    margin: 40% 0 40% 0;
   }
   a {
     height: 45px;
   }
 }
 
-#home {
+#startContents {
+  text-align: center;
   #todayList {
     padding-bottom: 20px;
     margin-bottom: 30px;
     border-bottom: 1px solid $gray;
-    .todayListItem {
-      padding: 1px 10px;
-      text-overflow: ellipsis;
-      * {
-        display: inline-block;
-        margin: 0 auto;
+    #nSchedule {
+      text-align: center;
+      margin-bottom: 10px;
+      #message {
+        margin: 0;
       }
-      #mediName {
-        @include initSize(73%, 30px);
-        overflow: hidden;
+    }
+    #ySchedule {
+      text-align: center;
+      .todayListItem {
+        padding: 1px 10px;
         text-overflow: ellipsis;
-        white-space:nowrap;
-      }
-      #mediContent {
-        width: 27%;
-        text-align: right;
-        float: right;
+        * {
+          display: inline-block;
+          margin: 0 auto;
+        }
+        #mediName {
+          @include initSize(73%, 30px);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space:nowrap;
+        }
+        #mediContent {
+          width: 27%;
+          text-align: right;
+          float: right;
+        }
       }
     }
   }
@@ -58,7 +70,6 @@
       text-align: center;
       td {
         @include initSize(40px, 40px);
-        @include initBorder(40px, 1px, solid);
       }
       #tdRed {
         background-color: $back1;
@@ -67,9 +78,6 @@
       #tdGray {
         background-color: $gray;
         color: $white;
-      }
-      #tdNone {
-        border: 1px solid $gray;
       }
     }
   }
