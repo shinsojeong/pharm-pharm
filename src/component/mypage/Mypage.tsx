@@ -11,7 +11,7 @@ import Profile_analysis_Flatline from '../../source/Profile_analysis_Flatline.pn
 import '../../style/Mypage.scss';
 
 export default function Mypage(): ReactElement {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   
   const url = process.env.REACT_APP_SERVER;
@@ -37,19 +37,18 @@ export default function Mypage(): ReactElement {
 
   //function
   //로그아웃
-  const logout = debounce(() => {
+  const logout = debounce(async () => {
     if (window.confirm('로그아웃 하시겠습니까?')) {
-      axios.get(`${url}/auth/logout`, {
+      const res = await axios.get(`${url}/auth/logout`, {
         withCredentials: true
       })
-      .then((res) => {
-        if (res.data.code === 200) {
-          dispatch(resetBar());
-          dispatch(resetSchedule());
-          alert("로그아웃이 완료되었습니다.");
-          history.replace('/');
-        }
-      })
+      
+      if (res.data.code === 200) {
+        dispatch(resetBar());
+        dispatch(resetSchedule());
+        alert("로그아웃이 완료되었습니다.");
+        navigate('/');
+      }
     }
   }, 800)
 
@@ -62,7 +61,7 @@ export default function Mypage(): ReactElement {
       if (res.data.code === 200) {
         setMyInfo(res.data.data)
       } else if (res.data.code === 403) {
-        history.replace('/');
+        navigate('/');
       }
     })
   }

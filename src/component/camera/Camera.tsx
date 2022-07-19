@@ -36,35 +36,34 @@ export default function Camera(): ReactElement {
     Tesseract.recognize(
       picture,
       'kor'
-    ).then(({ data: { text } }) => {
+    ).then(async({ data: { text } }) => {
       const trimStr = text.replace(/(\s*)/g, "");
       const nameStr = trimStr.split('[');
       const timeNumStr = trimStr.split(']');
       
-      axios.post(`${url}/drug/get_drug_info`, {
+      const res = await axios.post(`${url}/drug/get_drug_info`, {
         itemName: nameStr[0]
       }, {
         withCredentials: true
       })
-      .then((res) => {
-        const { header, body } = (JSON.parse(res.data.data)).response;
 
-        if (header.resultCode._text == '00') {
-          navigate(
-            "/user/create-medi-info",
-            {
-              state: {
-                medi_code: body.items.item.itemSeq._text,
-                medi_name: body.items.item.itemName._text,
-                medi_times: timeNumStr[1][0],
-                medi_num: timeNumStr[1][3]
-              }
+      const { header, body } = (JSON.parse(res.data.data)).response;
+
+      if (header.resultCode._text == '00') {
+        navigate(
+          "/user/create-medi-info",
+          {
+            state: {
+              medi_code: body.items.item.itemSeq._text,
+              medi_name: body.items.item.itemName._text,
+              medi_times: timeNumStr[1][0],
+              medi_num: timeNumStr[1][3]
             }
-          );
-        } else {
-          alert("일치하는 결과가 없습니다.");
-        }
-      })
+          }
+        );
+      } else {
+        alert("일치하는 결과가 없습니다.");
+      }
       
     })
   }

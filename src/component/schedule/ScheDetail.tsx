@@ -13,7 +13,7 @@ import '../../style/Schedule.scss';
 
 export default function ScheDetail(): ReactElement {
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(
@@ -50,12 +50,12 @@ export default function ScheDetail(): ReactElement {
   //function
   //뒤로가기
   function goBack() {
-    history.replace("/user/home");
+    navigate("/user/home");
   }
 
   //업데이트
-  const updateSche = debounce(async() => {
-    await dispatch(
+  const updateSche = debounce(() => {
+    dispatch(
       updateSchedule(
         {
           sche_code: sche_code,
