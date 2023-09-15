@@ -4,7 +4,7 @@ import { debounce } from 'lodash';
 
 import { getSchedule } from '../../module/schedule';
 import { RootState } from '../../module/store';
-import { scheduleInterface } from '../../module/type/scheType';
+import { scheduleType } from '../../module/type/scheType';
 
 import ScheTimeView from './ScheTimeView';
 import '../../style/Schedule.scss';
@@ -26,7 +26,7 @@ export default function ScheModal({ setModalState }): ReactElement {
         <p>오늘의 복용 정보가 없습니다.</p>
       :
         <div id="todayScheItems">
-          { today_schedule.map(({ sche_code, medi_name, medi_time, medi_times, medi_num}: scheduleInterface) => {
+          { today_schedule.map(({ sche_code, medi_name, medi_time, medi_times, medi_num}: scheduleType) => {
               return (
                 <div className="todayScheItem" id={sche_code} key={sche_code} onClick={() => goDetail(sche_code)}>
                   <p id="name">{medi_name}</p>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { scheduleInterface } from "../type/scheType";
+import { scheduleType } from "../type/scheType";
 
 const url = process.env.REACT_APP_SERVER;
 
@@ -13,7 +13,7 @@ export const createSche = async ({
   medi_time,
   medi_times,
   medi_num
-}) => {
+}: scheduleType) => {
   let res = null;
   try {
     res = await axios
@@ -48,7 +48,7 @@ export const updateSche = async ({
   medi_time,
   medi_times,
   medi_num
-}) => {
+}: scheduleType) => {
   let res = null;
   try {
     res = await axios
@@ -86,7 +86,7 @@ export const updateSche = async ({
 
 //복용 일정 삭제
 export const deleteSche = async (
-  { sche_code }: scheduleInterface
+  { sche_code }: scheduleType
 ) => {
   let res = null;
   try {
@@ -104,7 +104,7 @@ export const deleteSche = async (
 
 //복용 일정 세부 가져오기
 export const getSche = async (
-  { sche_code }: scheduleInterface
+  { sche_code }: scheduleType
 ) => {
   let res = null;
   try {
@@ -121,7 +121,7 @@ export const getSche = async (
 
 //선택 일자 복용 일정 가져오기
 export const getScheList = async (
-  { year, month, day }: scheduleInterface
+  { year, month, day }: scheduleType
 ) => {
   let res = null;
   try {

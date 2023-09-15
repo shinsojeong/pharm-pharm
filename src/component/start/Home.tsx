@@ -7,7 +7,7 @@ import { debounce } from 'lodash';
 import { changeTop, changeNav } from '../../module/bar';
 import { RootState } from '../../module/store';
 import { getScheduleList, getTodaySchedule } from '../../module/schedule';
-import { scheduleInterface } from '../../module/type/scheType';
+import { scheduleType } from '../../module/type/scheType';
 import ScheModal from '../schedule/ScheModal';
 import ScheMonthModal from '../schedule/ScheMonthModal';
 import inform from '../../source/inform.png';
@@ -117,7 +117,7 @@ export default function Home(): ReactElement {
         :
           <div id="ySchedule">
             {
-              todaySche.map(({ sche_code, medi_name, medi_times, medi_num }: scheduleInterface) => {
+              todaySche.map(({ sche_code, medi_name, medi_times, medi_num }: scheduleType) => {
                 return (
                   <div className="todayListItem" key={sche_code} onClick={() => setModalState(true)}>
                     <p id="mediName">{medi_name}</p>

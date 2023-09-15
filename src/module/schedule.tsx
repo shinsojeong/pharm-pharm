@@ -15,7 +15,7 @@ import {  //action type
 } from './type/scheType';
 
 import { 
-  scheduleInterface, 
+  scheduleType, 
   statesInterface 
 } from './type/scheType';
 
@@ -24,7 +24,7 @@ import { scheActionType } from './type/scheType';
 type initType = {
   calendar: any,
   today_schedule: any,
-  selected_schedule: scheduleInterface,
+  selected_schedule: scheduleType,
   states: statesInterface
 };
 

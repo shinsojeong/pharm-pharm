@@ -42,7 +42,7 @@ export interface updateAction {  //update
 }
 export interface updateSuccessAction {
   type: typeof UPDATESCHEDULE_SUCCESS,
-  payload: scheduleInterface
+  payload: scheduleType
 }
 export interface updateErrorAction {
   type: typeof UPDATESCHEDULE_ERROR,
@@ -53,7 +53,7 @@ export interface deleteAction {  //delete
 }
 export interface deleteSuccessAction {
   type: typeof DELETESCHEDULE_SUCCESS,
-  payload: scheduleInterface
+  payload: scheduleType
 }
 export interface deleteErrorAction {
   type: typeof DELETESCHEDULE_ERROR,
@@ -61,11 +61,11 @@ export interface deleteErrorAction {
 }
 export interface getAction {  //get
   type: typeof GETSCHEDULE,
-  payload: scheduleInterface
+  payload: scheduleType
 }
 export interface getSuccessAction {
   type: typeof GETSCHEDULE_SUCCESS,
-  payload: scheduleInterface
+  payload: scheduleType
 }
 export interface getErrorAction {
   type: typeof GETSCHEDULE_ERROR,
@@ -73,11 +73,11 @@ export interface getErrorAction {
 }
 export interface getListAction {  //getList
   type: typeof GETSCHEDULELIST,
-  payload: scheduleInterface
+  payload: scheduleType
 }
 export interface getListSuccessAction {
   type: typeof GETSCHEDULELIST_SUCCESS,
-  payload: scheduleInterface
+  payload: scheduleType
 }
 export interface getListErrorAction {
   type: typeof GETSCHEDULELIST_ERROR,
@@ -85,11 +85,11 @@ export interface getListErrorAction {
 }
 export interface getTodayAction {  //getToday
   type: typeof GETTODAYSCHEDULE,
-  payload: scheduleInterface
+  payload: scheduleType
 }
 export interface getTodaySuccessAction {
   type: typeof GETTODAYSCHEDULE_SUCCESS,
-  payload: scheduleInterface
+  payload: scheduleType
 }
 export interface getTodayErrorAction {
   type: typeof GETTODAYSCHEDULE_ERROR,
@@ -115,7 +115,7 @@ export interface statesInterface {
   data: string,
   error: boolean
 }
-export interface scheduleInterface {
+export interface scheduleType {
   sche_code?: string,
   medi_code?: string,
   medi_name?: string,

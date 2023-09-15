@@ -7,11 +7,11 @@ export const RESETBAR = "RESETBAR" as const;
 //action interface
 export interface topAction {
   type: typeof CHANGETOP,
-  payload: topInterface
+  payload: topType
 }
 export interface navAction {
   type: typeof CHANGENAV,
-  payload: navInterface
+  payload: navType
 }
 export interface barResetAction {
   type: typeof RESETBAR
@@ -23,13 +23,13 @@ export type barActionType =
 
 
 //interface
-export interface topInterface {
+export interface topType {
   left: string,
   center: string,
   right: string,
   lfunc?: any,
   rfunc?: any
 }
-export interface navInterface {
+export interface navType {
   selected: string
 }

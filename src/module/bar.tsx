@@ -3,14 +3,14 @@ import {  //action type
   CHANGENAV,
   RESETBAR
 } from './type/barType';
-import { topInterface, navInterface } from './type/barType';
+import { topType, navType } from './type/barType';
 
 
 //type
 import { barActionType } from './type/barType';
 type initType = {
-  top: topInterface,
-  nav: navInterface
+  top: topType,
+  nav: navType
 }
 
 //initial state
@@ -30,7 +30,7 @@ const INIT_BAR_STATE: initType = {
 
 //상단바 변경
 export const changeTop = (
-  { left, center, right, lfunc, rfunc }: topInterface
+  { left, center, right, lfunc, rfunc }: topType
 ) => ({
   type: CHANGETOP,
   payload: {
@@ -40,7 +40,7 @@ export const changeTop = (
 
 //하단바 변경
 export const changeNav = (
-  { selected }: navInterface
+  { selected }: navType
 ) => ({
   type: CHANGENAV,
   payload: selected

@@ -47,11 +47,13 @@ module.exports = {
     historyApiFallback: true
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx','.ts','.tsx'],
+    extensions: ['.*', '.js', '.jsx','.ts','.tsx'],
     fallback: {
       fs: false,
       os: require.resolve("os-browserify"),
-      path: require.resolve("path-browserify")
+      path: require.resolve("path-browserify"),
+      crypto: require.resolve("crypto-browserify"), 
+      stream: require.resolve("stream-browserify")
     }
   },
   plugins: [

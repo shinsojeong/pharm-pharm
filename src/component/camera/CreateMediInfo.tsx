@@ -5,7 +5,7 @@ import { debounce } from 'lodash';
 
 import { changeTop } from '../../module/bar';
 import { createSchedule } from '../../module/schedule';
-import { scheduleInterface } from '../../module/type/scheType';
+import { scheduleType } from '../../module/type/scheType';
 import { dayArr, timeArr } from '../utill/Reusable';
 
 export default function CreateMediInfo(): ReactElement {
@@ -17,7 +17,7 @@ export default function CreateMediInfo(): ReactElement {
     medi_name, 
     medi_num, 
     medi_times 
-  }: scheduleInterface = location.state;
+  }: scheduleType = location.state;
   const [mediDate1, setMediDate1] = useState("");
   const [mediDate2, setMediDate2] = useState("");
   const [mediDay, setMediDay] = useState([]);
