@@ -27,8 +27,8 @@ export interface topType {
   left: string,
   center: string,
   right: string,
-  lfunc?: any,
-  rfunc?: any
+  lfunc?: Function,
+  rfunc?: Function
 }
 export interface navType {
   selected: string

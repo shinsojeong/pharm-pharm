@@ -100,13 +100,21 @@ export interface resetScheduleAction {  //reset
 }
 
 export type scheActionType =
-| createAction | createSuccessAction | createErrorAction
-| updateAction | updateSuccessAction | updateErrorAction
-| deleteAction | deleteSuccessAction | deleteErrorAction
-| getAction | getSuccessAction | getErrorAction
-| getListAction | getListSuccessAction | getListErrorAction
-| getTodayAction | getTodaySuccessAction | getTodayErrorAction
+| createAction
+| updateAction
+| deleteAction
+| getAction
+| getListAction
+| getTodayAction
 | resetScheduleAction;
+
+export type scheActionReturnType =
+| createSuccessAction | createErrorAction
+| updateSuccessAction | updateErrorAction
+| deleteSuccessAction | deleteErrorAction
+| getSuccessAction | getErrorAction
+| getListSuccessAction | getListErrorAction
+| getTodaySuccessAction | getTodayErrorAction
 
 
 //interface

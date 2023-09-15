@@ -22,8 +22,8 @@ import {
 //type
 import { scheActionType } from './type/scheType';
 type initType = {
-  calendar: any,
-  today_schedule: any,
+  calendar: Array<scheduleType>,
+  today_schedule: Array<scheduleType>,
   selected_schedule: scheduleType,
   states: statesInterface
 };
