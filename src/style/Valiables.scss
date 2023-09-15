@@ -15,7 +15,14 @@ $font-xx-small: 12px;
 $height-top: 60px;
 $height-bottom: 60px;
 
-@mixin initSize($width:100%, $height:auto, $top:auto, $right:auto, $bottom:auto, $left:auto) {
+@mixin initSize(
+  $width: 100%,
+  $height: auto,
+  $top: auto,
+  $right: auto,
+  $bottom: auto,
+  $left: auto
+) {
   width: $width;
   height: $height;
   top: $top;
@@ -24,18 +31,18 @@ $height-bottom: 60px;
   left: $left;
 }
 
-@mixin marginPadding($margin:0 auto, $padding:0 auto) {
+@mixin marginPadding($margin: 0 auto, $padding: 0 auto) {
   margin: $margin;
   padding: $padding;
 }
 
-@mixin initFont($size:$font-x-small, $color:$black, $bold:normal) {
+@mixin initFont($size: $font-x-small, $color: $black, $bold: normal) {
   font-size: $size;
   color: $color;
   font-weight: $bold;
 }
 
-@mixin initBorder($radius:0, $fixel:1px, $style:solid, $color:$gray) {
+@mixin initBorder($radius: 0, $fixel: 1px, $style: solid, $color: $gray) {
   border-radius: $radius;
   border: $fixel $style $color;
 }
@@ -44,17 +51,17 @@ $height-bottom: 60px;
 //fadein
 @keyframes fadein {
   from {
-      opacity: 0;
+    opacity: 0;
   }
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
 @-webkit-keyframes fadein {
   from {
-      opacity: 0;
+    opacity: 0;
   }
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }

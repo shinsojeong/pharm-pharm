@@ -1,11 +1,13 @@
-@import './valiables.scss';
+@import "./valiables.scss";
 
 .top {
   @include initSize(100%, $height-top, 0);
   padding-top: 15px;
   background-color: $back1;
   position: fixed;
-  #left, #center, #right {
+  #left,
+  #center,
+  #right {
     height: $height-top;
     float: left;
     * {
@@ -13,7 +15,8 @@
       text-align: center;
     }
   }
-  #left, #right {
+  #left,
+  #right {
     width: 20%;
   }
   #close {
@@ -47,7 +50,7 @@
     text-align: center;
     .navItem {
       @include initSize($height-bottom, $height-bottom, -7px);
-      margin: 0 9px;
+      margin: 0 8px;
       display: inline-block;
       position: relative;
       * {

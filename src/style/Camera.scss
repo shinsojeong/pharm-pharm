@@ -1,4 +1,4 @@
-@import './valiables.scss';
+@import "./valiables.scss";
 
 #camera {
   text-align: center;
@@ -14,7 +14,13 @@
       display: none;
     }
   }
+  #messages {
+    margin-top: 60px;
+    img {
+      padding: 0;
+    }
+  }
   img {
-    padding-top: 100px;
+    padding-top: 60px;
   }
 }
