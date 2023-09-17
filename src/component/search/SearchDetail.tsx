@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { drugType } from '../../module/type/drugType';
 
 export default function SearchDetail({ data, setModalState }): ReactElement {
   const { 
@@ -11,7 +12,7 @@ export default function SearchDetail({ data, setModalState }): ReactElement {
     intrcQesitm,
     seQesitm,
     depositMethodQesitm
-  } = data;
+  }: drugType = data;
 
   return (
     <div className="modal" id="searchDetail">

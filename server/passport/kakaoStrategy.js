@@ -10,18 +10,20 @@ const kakaoStrategy = () => {
   }, 
   async (accessToken, refreshToken, profile, done) => {
     try {
-      const exUser = await User.findOne({
-        where: { sns_id: profile.id, provider: 'kakao' }
+      const exUser = await User.findOne({  //가입된 유저인지 확인
+        where: { 
+          sns_id: profile.id, 
+          provider: 'kakao' 
+        }
       });
-      if (exUser) {
-        done(null, exUser);
-      } else {
-        const newUser = await User.create({
+      if (exUser) done(null, exUser);
+      else {
+        const newUser = await User.create({  //유저 생성
           sns_id: profile.id,
           nickname: profile._json.properties.nickname,
           birth: profile._json.kakao_account.birthday,
           gender: profile._json.kakao_account.gender,
-          provider: 'kakao'
+          provider: 'kakao',
         });
         done(null, newUser);
       }

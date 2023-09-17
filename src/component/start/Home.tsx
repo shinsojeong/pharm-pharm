@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../util/hooks';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { debounce } from 'lodash';
@@ -14,13 +14,13 @@ import inform from '../../source/inform.png';
 import '../../style/Start.scss';
 
 export default function Home(): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useNavigate();
 
   const [day, setDay] = useState(moment());
   const [modalState, setModalState] = useState(false);
   const [monthModalState, setMonthModalState] = useState(false); 
-  const todaySche = useSelector((state: RootState) => state.schedule.today_schedule);
+  const todaySche = useAppSelector((state: RootState) => state.schedule.today_schedule);
   const firstWeek = day.clone().startOf('month').week();
   const lastWeek = day.clone().endOf('month').week() === 1 ? 53 : day.clone().endOf('month').week();
   const [selecedDate, setSelectedDate] = useState(null);

@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../util/hooks';
 import { useNavigate } from 'react-router-dom';
 import Tesseract from 'tesseract.js';
 
@@ -11,7 +11,7 @@ import '../../style/Camera.scss';
 
 export default function Camera(): ReactElement {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const url = process.env.REACT_APP_SERVER;
 
   useEffect(() => {
@@ -28,9 +28,7 @@ export default function Camera(): ReactElement {
 
   //function
   //사진 업로드
-  const uploadImg = (files: FileList) => {
-    recognize(files[0]);
-  }
+  const uploadImg = (files: FileList) => recognize(files[0]);
 
   //OCR
   const recognize = (picture: File) => {
@@ -68,9 +66,7 @@ export default function Camera(): ReactElement {
               }
             }
           );
-        } else {
-          alert("일치하는 결과가 없습니다.");
-        }
+        } else alert("일치하는 결과가 없습니다.");
         
       })
     } catch(e) {
@@ -88,9 +84,7 @@ export default function Camera(): ReactElement {
           type="file"
           name="picture"
           accept="image/*"
-          onChange={(e) => {
-            uploadImg(e.target.files)
-          }}
+          onChange={(e) => uploadImg(e.target.files)}
         ></input>
         <div id="messages">
           <p>*현재는 아래 양식의 약봉투만 인식 가능*</p>

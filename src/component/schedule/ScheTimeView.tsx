@@ -13,9 +13,7 @@ export default function ScheTimeView({ time }: Props): ReactElement {
     let result = [];
     for (let i = start; i <= end; i++) {
       let num = (i%12);
-      if (num === 0) {
-        num = 12;
-      }
+      if (num === 0) num = 12;
       
       if (arr.indexOf(`${i}`) === -1) {
         result = result.concat(<div className="timeItem" id="none" key={num}>{num}</div>)

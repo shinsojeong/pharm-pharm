@@ -2,12 +2,13 @@ import React, { ReactElement, useState } from 'react';
 import { debounce } from 'lodash';
 import SearchDetail from './SearchDetail';
 import SearchModule from './SearchModule';
+import { drugType } from '../../module/type/drugType';
 import Search_engine_Flatline from '../../source/Search_engine_Flatline.png';
 import '../../style/Search.scss';
 
 export default function Search(): ReactElement {
 
-  const [res, setRes] = useState([]);
+  const [res, setRes] = useState<Array<drugType>>([]);
   const [modalState, setModalState] = useState(false);
   const [detail, setDetail] = useState({});
 
@@ -22,7 +23,7 @@ export default function Search(): ReactElement {
     <div className="contents" id="search">
       <SearchModule setRes={setRes}/>
       <div id="searchResult">
-        {res.length > 0 || res.entpName !== undefined ?
+        {res.length > 0 ?
           <table>
             <thead>
               <tr>
@@ -32,8 +33,8 @@ export default function Search(): ReactElement {
               </tr>
             </thead>
             <tbody>
-              { res.length !== undefined ?
-                res.map((item, index) => {
+              { res.length > 0 &&
+                res.map((item: drugType, index: number) => {
                   return (
                     <tr key={index+1}>
                       <td>{index+1}</td>
@@ -42,12 +43,6 @@ export default function Search(): ReactElement {
                     </tr>
                     )
                   })
-              : 
-                <tr>
-                  <td>1</td>
-                  <td>{res.itemName._text}</td>
-                  <td id="btn" onClick={() => goDetail(res)}>자세히</td>
-                </tr>
               }
             </tbody>
           </table>

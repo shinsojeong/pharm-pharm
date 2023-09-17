@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../util/hooks';
 import { debounce } from 'lodash';
 
 import { getSchedule } from '../../module/schedule';
@@ -9,9 +9,9 @@ import { scheduleType } from '../../module/type/scheType';
 import ScheTimeView from './ScheTimeView';
 
 export default function ScheMonthModal({ setMonthModalState, today }): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   
-  const schedule = useSelector((state: RootState) => state.schedule.calendar);
+  const schedule = useAppSelector((state: RootState) => state.schedule.calendar);
 
   //function
   //상세정보로 이동
@@ -23,7 +23,7 @@ export default function ScheMonthModal({ setMonthModalState, today }): ReactElem
     <div className="modal" id="scheMonthModal">
       <p id="title">{today}</p>
       <span id="close" onClick={() => setMonthModalState()}>X</span>
-      {schedule === undefined || schedule.length === 0 ? 
+      {schedule.length === 0 ? 
         <p id="message">해당 날짜의 복용 정보가 없습니다.</p>
       :
         <div id="monthScheItems">

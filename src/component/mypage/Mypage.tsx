@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../util/hooks';
 import { useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 
@@ -12,7 +12,7 @@ import '../../style/Mypage.scss';
 
 export default function Mypage(): ReactElement {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   
   const url = process.env.REACT_APP_SERVER;
 
@@ -58,11 +58,8 @@ export default function Mypage(): ReactElement {
       withCredentials: true
     })
     .then((res) => {
-      if (res.data.code === 200) {
-        setMyInfo(res.data.data)
-      } else if (res.data.code === 403) {
-        navigate('/');
-      }
+      if (res.data.code === 200) setMyInfo(res.data.data)
+      else if (res.data.code === 403) navigate('/');
     })
   }
 

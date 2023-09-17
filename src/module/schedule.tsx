@@ -16,6 +16,7 @@ import {  //action type
 
 import { 
   scheduleType, 
+  scheActionReturnType,
   statesInterface 
 } from './type/scheType';
 
@@ -75,7 +76,7 @@ export const resetSchedule = () => ({ type: RESETSCHEDULE });
 
 
 //reducer
-const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
+const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType | scheActionReturnType) => {
   switch(action.type) {
 
     //create
@@ -121,7 +122,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
     case UPDATESCHEDULE_SUCCESS:
       return {
         ...state,
-        selected_schedule: action.payload,
+        selected_schedule: action.payload || INIT_SCHEDULE_STATE.selected_schedule,
         states: {
           ...state.states,
           loading: false,
@@ -183,7 +184,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
     case GETSCHEDULE_SUCCESS:
       return {
         ...state,
-        selected_schedule: action.payload,
+        selected_schedule: action.payload || INIT_SCHEDULE_STATE.selected_schedule,
         states: {
           ...state.states,
           loading: false,
@@ -205,7 +206,6 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
     case GETSCHEDULELIST:
       return {
         ...state,
-        calendar: action.payload,
         states: {
           ...state.states,
           loading: true,
@@ -215,7 +215,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
     case GETSCHEDULELIST_SUCCESS:
       return {
         ...state,
-        calendar: action.payload,
+        calendar: action.payload || [],
         states: {
           ...state.states,
           loading: false,
@@ -246,7 +246,7 @@ const schedule = (state = INIT_SCHEDULE_STATE, action: scheActionType) => {
     case GETTODAYSCHEDULE_SUCCESS:
       return {
         ...state,
-        today_schedule: action.payload,
+        today_schedule: action.payload || [],
         states: {
           ...state.states,
           loading: false,

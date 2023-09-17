@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../util/hooks';
 import { debounce } from 'lodash';
 
 import { RootState } from '../../module/store';
@@ -12,7 +12,7 @@ import ScheTimeView from './ScheTimeView';
 import '../../style/Schedule.scss';
 
 export default function ScheDetail(): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function ScheDetail(): ReactElement {
     medi_time, 
     medi_times, 
     sche_code 
-  } = useSelector((state: RootState) => state.schedule.selected_schedule);
+  } = useAppSelector((state: RootState) => state.schedule.selected_schedule);
   const [updateState, setUpdateState] = useState(false);
   const [mediDate1, setMediDate1] = useState(medi_date1);
   const [mediDate2, setMediDate2] = useState(medi_date2);
@@ -58,9 +58,9 @@ export default function ScheDetail(): ReactElement {
     dispatch(
       updateSchedule(
         {
-          sche_code: sche_code,
-          medi_code: medi_code, 
-          medi_name: medi_name,
+          sche_code,
+          medi_code,
+          medi_name,
           medi_date1: mediDate1,
           medi_date2: mediDate2,
           medi_day: mediDay.toString(),
@@ -85,19 +85,11 @@ export default function ScheDetail(): ReactElement {
   //checkbox changeHandler
   const changeHandler = (type: string, checked: boolean, id: string) => {
     if (type === "mediDay") {
-      if (checked) {
-        setMediDay([...mediDay, id]);
-      } else {
-        // 체크 해제
-        setMediDay(mediDay.filter((el) => el !== id));
-      }
+      if (checked) setMediDay([...mediDay, id]);
+      else setMediDay(mediDay.filter((el: string) => el !== id));  //체크 해제
     } else if (type === "mediTime") {
-      if (checked) {
-        setMediTime([...mediTime, id]);
-      } else {
-        // 체크 해제
-        setMediTime(mediTime.filter((el) => el !== id));
-      }
+      if (checked) setMediTime([...mediTime, id]);
+      else setMediTime(mediTime.filter((el: string) => el !== id));  //체크 해제
     }
   }
 

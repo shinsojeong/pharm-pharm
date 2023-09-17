@@ -1,11 +1,11 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../util/hooks';
 import { debounce } from 'lodash';
 import { changeTop } from '../../module/bar';
 
 export default function SearchModule({setRes}): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   
   const url = process.env.REACT_APP_SERVER;
 
@@ -28,17 +28,16 @@ export default function SearchModule({setRes}): ReactElement {
   //검색
   const search = debounce(async() => {
     const res = await axios.post(`${url}/drug/get_drug_info`, {
-      itemName: itemName,
-      itemSeq: itemSeq
+      itemName,
+      itemSeq
     }, {
       withCredentials: true
     })
 
     const { body } = (JSON.parse(res.data.data)).response;
 
-    if (body.items.item !== undefined) {
-      setRes(body.items.item);
-    } else {
+    if (body.items.item !== undefined) setRes(body.items.item);
+    else {
       setRes([]);
       alert("일치하는 결과가 없습니다.");
     }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../util/hooks';
 import { useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 
@@ -10,9 +10,9 @@ import '../../style/Bar.scss';
 import { VscSearch, VscDeviceCamera, VscAccount, VscHome } from 'react-icons/Vsc';
 
 export default function Nav(): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useNavigate();
-  const nav = useSelector((state: RootState) => state.bar.nav.selected);
+  const nav = useAppSelector((state: RootState) => state.bar.nav.selected);
   
   const goTo = debounce((selected: string) => {
     dispatch(changeNav({selected}))

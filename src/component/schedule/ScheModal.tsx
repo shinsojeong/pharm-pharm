@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../util/hooks';
 import { debounce } from 'lodash';
 
 import { getSchedule } from '../../module/schedule';
@@ -10,9 +10,9 @@ import ScheTimeView from './ScheTimeView';
 import '../../style/Schedule.scss';
 
 export default function ScheModal({ setModalState }): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const today_schedule = useSelector((state: RootState) => state.schedule.today_schedule);
+  const today_schedule = useAppSelector((state: RootState) => state.schedule.today_schedule);
 
   const goDetail = debounce((sche_code: string) => {
     dispatch(getSchedule({ sche_code }));

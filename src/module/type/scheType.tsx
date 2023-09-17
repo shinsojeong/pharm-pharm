@@ -73,11 +73,11 @@ export interface getErrorAction {
 }
 export interface getListAction {  //getList
   type: typeof GETSCHEDULELIST,
-  payload: scheduleType
+  payload: scheduleType[]
 }
 export interface getListSuccessAction {
   type: typeof GETSCHEDULELIST_SUCCESS,
-  payload: scheduleType
+  payload: scheduleType[]
 }
 export interface getListErrorAction {
   type: typeof GETSCHEDULELIST_ERROR,
@@ -85,11 +85,11 @@ export interface getListErrorAction {
 }
 export interface getTodayAction {  //getToday
   type: typeof GETTODAYSCHEDULE,
-  payload: scheduleType
+  payload: scheduleType[]
 }
 export interface getTodaySuccessAction {
   type: typeof GETTODAYSCHEDULE_SUCCESS,
-  payload: scheduleType
+  payload: scheduleType[]
 }
 export interface getTodayErrorAction {
   type: typeof GETTODAYSCHEDULE_ERROR,
@@ -138,19 +138,4 @@ export interface scheduleType {
   month?: number,
   day?: number,
   last_day?: number
-}
-export interface drugInterface {
-  entpName?: string,
-  itemName?: string,
-  itemSeq?: string,
-  efcyQesitm?: string,
-  useMethodQesitm?: string,
-  atpnWarnQesitm?: string,
-  atpnQesitm?: string,
-  intrcQesitm?: string,
-  seQesitm?: string,
-  depositMethodQesitm?: string,
-  openDe?: string,
-  updateDe?: string,
-  itemImage?: string
 }

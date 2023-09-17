@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../util/hooks';
 import { useLocation } from 'react-router-dom';
 import { debounce } from 'lodash';
 
@@ -10,7 +10,7 @@ import { dayArr, timeArr } from '../utill/Reusable';
 
 export default function CreateMediInfo(): ReactElement {
   const location = useLocation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { 
     medi_code, 
@@ -40,19 +40,11 @@ export default function CreateMediInfo(): ReactElement {
   //checkbox changeHandler
   const changeHandler = (type: string, checked: boolean, id: any) => {
     if (type === "mediDay") {
-      if (checked) {
-        setMediDay([...mediDay, id]);
-      } else {
-        // 체크 해제
-        setMediDay(mediDay.filter((el) => el !== id));
-      }
+      if (checked) setMediDay([...mediDay, id]);
+      else setMediDay(mediDay.filter((el) => el !== id));  //체크 해제
     } else if (type === "mediTime") {
-      if (checked) {
-        setMediTime([...mediTime, id]);
-      } else {
-        // 체크 해제
-        setMediTime(mediTime.filter((el) => el !== id));
-      }
+      if (checked) setMediTime([...mediTime, id]);
+      else setMediTime(mediTime.filter((el) => el !== id));  //체크 해제
     }
   }
 
@@ -60,14 +52,14 @@ export default function CreateMediInfo(): ReactElement {
   const submit = debounce(() => {
     dispatch(
       createSchedule({
-        medi_code: medi_code,
-        medi_name: medi_name,
+        medi_code,
+        medi_name,
         medi_date1: mediDate1.toString(),
         medi_date2: mediDate2.toString(),
         medi_day: mediDay.toString(),
         medi_time: mediTime.toString(),
-        medi_times: medi_times,
-        medi_num: medi_num
+        medi_times,
+        medi_num
       })
     )
   }, 800)

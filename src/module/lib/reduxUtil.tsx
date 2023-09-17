@@ -1,5 +1,5 @@
 import { scheActionType, scheActionReturnType } from '../type/scheType';
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 import { Action } from '../type/index';
 
 export const createThunk = (
