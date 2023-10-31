@@ -1,43 +1,62 @@
-import React, { ReactElement } from 'react';
-import { useAppSelector, useAppDispatch } from '../../util/hooks';
-import { debounce } from 'lodash';
+import React, { ReactElement } from "react";
+import { useAppSelector, useAppDispatch } from "../../util/hooks";
+import { debounce } from "lodash";
 
-import { getSchedule } from '../../module/schedule';
-import { RootState } from '../../module/store';
-import { scheduleType } from '../../module/type/scheType';
+import { getSchedule } from "../../module/schedule";
+import { RootState } from "../../module/store";
+import { scheduleType } from "../../module/type/scheType";
 
-import ScheTimeView from './ScheTimeView';
-import '../../style/Schedule.scss';
+import ScheTimeView from "./ScheTimeView";
+import "../../style/Schedule.scss";
 
 export default function ScheModal({ setModalState }): ReactElement {
   const dispatch = useAppDispatch();
 
-  const today_schedule = useAppSelector((state: RootState) => state.schedule.today_schedule);
+  const today_schedule = useAppSelector(
+    (state: RootState) => state.schedule.today_schedule
+  );
 
+  /** 복용 정보 상세 페이지로 이동 */
   const goDetail = debounce((sche_code: string) => {
     dispatch(getSchedule({ sche_code }));
-  }, 800)
+  }, 800);
 
   return (
     <div className="modal" id="scheModal">
       <p id="title">오늘의 복용 정보</p>
-      <span id="close" onClick={() => setModalState()}>X</span>
-      {today_schedule.length === 0 ? 
+      <span id="close" onClick={() => setModalState()}>
+        X
+      </span>
+      {today_schedule.length === 0 ? (
         <p>오늘의 복용 정보가 없습니다.</p>
-      :
+      ) : (
         <div id="todayScheItems">
-          { today_schedule.map(({ sche_code, medi_name, medi_time, medi_times, medi_num}: scheduleType) => {
+          {today_schedule.map(
+            ({
+              sche_code,
+              medi_name,
+              medi_time,
+              medi_times,
+              medi_num,
+            }: scheduleType) => {
               return (
-                <div className="todayScheItem" id={sche_code} key={sche_code} onClick={() => goDetail(sche_code)}>
+                <div
+                  className="todayScheItem"
+                  id={sche_code}
+                  key={sche_code}
+                  onClick={() => goDetail(sche_code)}
+                >
                   <p id="name">{medi_name}</p>
-                  <p id="content">{medi_times}회 {medi_num}정</p>
-                  <ScheTimeView time={medi_time}/>
+                  <p id="content">
+                    {medi_times}회 {medi_num}정
+                  </p>
+                  <ScheTimeView time={medi_time} />
                 </div>
-              )
-            })
-          }
+              );
+            }
+          )}
         </div>
-      }
+      )}
     </div>
-  )
+  );
 }

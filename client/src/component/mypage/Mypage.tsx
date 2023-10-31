@@ -35,8 +35,7 @@ export default function Mypage(): ReactElement {
     getUserInfo();
   }, []);
 
-  //function
-  //로그아웃
+  /** 로그아웃 */
   const logout = debounce(async () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
       const res = await axios.get(`${url}/auth/logout`, {
@@ -52,16 +51,17 @@ export default function Mypage(): ReactElement {
     }
   }, 800);
 
-  //유저 정보 받아오기
-  const getUserInfo = () => {
-    axios
-      .get(`${url}/auth/mypage`, {
+  /** 유저 정보 받아오기 */
+  const getUserInfo = async () => {
+    try {
+      const res = await axios.get(`${url}/auth/mypage`, {
         withCredentials: true,
-      })
-      .then((res) => {
-        if (res.data.code === 200) setMyInfo(res.data.data);
-        else if (res.data.code === 403) navigate("/");
       });
+      if (res.data.code === 200) setMyInfo(res.data.data);
+      else if (res.data.code === 403) navigate("/");
+    } catch (e) {
+      navigate("/");
+    }
   };
 
   return (

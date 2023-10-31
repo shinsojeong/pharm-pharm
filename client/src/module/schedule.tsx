@@ -69,7 +69,7 @@ const INIT_SCHEDULE_STATE: initType = {
   },
 };
 
-//복용 일정 생성
+/** 복용 일정 생성 */
 export const createSchedule = createThunk(
   CREATESCHEDULE,
   createSche,
@@ -77,10 +77,10 @@ export const createSchedule = createThunk(
   "/user/home"
 );
 
-//복용 일정 수정
+/** 복용 일정 수정 */
 export const updateSchedule = createThunk(UPDATESCHEDULE, updateSche, false);
 
-//복용 일정 삭제
+/** 복용 일정 삭제 */
 export const deleteSchedule = createThunk(
   DELETESCHEDULE,
   deleteSche,
@@ -88,7 +88,7 @@ export const deleteSchedule = createThunk(
   "/user/home"
 );
 
-//복용 일정 세부 가져오기
+/** 복용 일정 세부 가져오기 */
 export const getSchedule = createThunk(
   GETSCHEDULE,
   getSche,
@@ -96,17 +96,17 @@ export const getSchedule = createThunk(
   "/user/sche-detail"
 );
 
-//선택 일자 복용 일정 가져오기
+/** 선택 일자 복용 일정 가져오기 */
 export const getScheduleList = createThunk(GETSCHEDULELIST, getScheList, false);
 
-//오늘의 복용 일정 가져오기
+/** 오늘의 복용 일정 가져오기 */
 export const getTodaySchedule = createThunk(
   GETTODAYSCHEDULE,
   getTodaySche,
   false
 );
 
-//로그아웃 시 schedule 초기화
+/** 로그아웃 시 schedule 초기화 */
 export const resetSchedule = () => ({ type: RESETSCHEDULE });
 
 //reducer

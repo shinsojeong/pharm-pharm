@@ -26,11 +26,10 @@ export default function Camera(): ReactElement {
     );
   }, []);
 
-  //function
-  //사진 업로드
+  /** 이미지 업로드 */
   const uploadImg = (files: FileList) => recognize(files[0]);
 
-  //OCR
+  /** OCR 약봉투 인식 */
   const recognize = (picture: File) => {
     try {
       Tesseract.recognize(picture, "kor").then(async ({ data: { text } }) => {

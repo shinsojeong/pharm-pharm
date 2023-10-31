@@ -16,7 +16,7 @@ import "../../style/Start.scss";
 export default function Home(): ReactElement {
   const dispatch = useAppDispatch();
   const history = useNavigate();
-  console.log("환경변수", process.env, process.env.REACT_APP_SERVER);
+
   const [day, setDay] = useState(moment());
   const [modalState, setModalState] = useState(false);
   const [monthModalState, setMonthModalState] = useState(false);
@@ -48,18 +48,17 @@ export default function Home(): ReactElement {
     getTodaySche(); //오늘의 스케쥴 가져오기
   }, []);
 
-  //function
-  //캘린더 이전달로 변경
+  /** 캘린더 이전달로 변경 */
   const goPrev = debounce(() => {
     setDay(day.clone().subtract(1, "month"));
   }, 800);
 
-  //캘린더 다음달로 변경
+  /** 캘린더 다음달로 변경 */
   const goNext = debounce(() => {
     setDay(day.clone().add(1, "month"));
   }, 800);
 
-  //해당 달 캘린더 가져오기
+  /** 해당 달 캘린더 가져오기 */
   const getCalendar = () => {
     let result = [];
     for (let week = firstWeek; week <= lastWeek; week++) {
@@ -94,7 +93,7 @@ export default function Home(): ReactElement {
     return result;
   };
 
-  //오늘의 복용 정보 가져오기
+  /** 오늘의 복용 정보 가져오기 */
   const getTodaySche = () => {
     dispatch(getTodaySchedule(history));
   };

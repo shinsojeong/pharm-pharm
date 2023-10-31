@@ -25,26 +25,29 @@ export default function SearchModule({ setRes }): ReactElement {
     );
   }, []);
 
-  //function
-  //검색
+  /** 검색 */
   const search = debounce(async () => {
-    const res = await axios.post(
-      `${url}/drug/get_drug_info`,
-      {
-        itemName,
-        itemSeq,
-      },
-      {
-        withCredentials: true,
+    try {
+      const res = await axios.post(
+        `${url}/drug/get_drug_info`,
+        {
+          itemName,
+          itemSeq,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      const { body } = JSON.parse(res.data.data).response;
+
+      if (body.items.item !== undefined) setRes(body.items.item);
+      else {
+        setRes([]);
+        alert("일치하는 결과가 없습니다.");
       }
-    );
-
-    const { body } = JSON.parse(res.data.data).response;
-
-    if (body.items.item !== undefined) setRes(body.items.item);
-    else {
-      setRes([]);
-      alert("일치하는 결과가 없습니다.");
+    } catch (e) {
+      alert("검색 중 에러가 발생했습니다.");
     }
   }, 800);
 
