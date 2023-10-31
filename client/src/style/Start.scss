@@ -1,4 +1,4 @@
-@import './valiables.scss';
+@import "./Valiables.scss";
 
 .login {
   @include initSize(100%, 100vh);
@@ -41,7 +41,7 @@
           @include initSize(73%, 30px);
           overflow: hidden;
           text-overflow: ellipsis;
-          white-space:nowrap;
+          white-space: nowrap;
         }
         #mediContent {
           width: 27%;

@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react';
-import { AiOutlineLoading } from 'react-icons/Ai';
+import React, { ReactElement } from "react";
+import LoadingImg from "../../source/loading.png";
 
 export default function Loading(): ReactElement {
   return (
     <div className="loading">
-      <AiOutlineLoading size="30"/>
+      <img src={LoadingImg} width="30px" alt="loading" />
     </div>
-  )
+  );
 }

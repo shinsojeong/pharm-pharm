@@ -1,4 +1,4 @@
-@import './valiables.scss';
+@import "./Valiables.scss";
 
 #scheTimeView {
   @include initBorder(8px, 2px, solid, $back1);
@@ -30,9 +30,10 @@
   #todayScheItems {
     margin-top: 70px;
     overflow-y: scroll;
-   .todayScheItem {
-     margin-bottom: 20px;
-      #name, #content {
+    .todayScheItem {
+      margin-bottom: 20px;
+      #name,
+      #content {
         @include marginPadding(0 auto, 0);
         display: inline-block;
         font-weight: bold;
@@ -41,7 +42,7 @@
         width: 70%;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space:nowrap;
+        white-space: nowrap;
       }
       #content {
         width: 27%;
@@ -49,7 +50,7 @@
         text-align: right;
         float: right;
       }
-    } 
+    }
   }
 }
 
@@ -77,7 +78,8 @@
   }
   .btnDiv {
     text-align: center;
-    #whiteBtn, #orangeBtn {
+    #whiteBtn,
+    #orangeBtn {
       @include initSize(100px, 34px);
       @include initFont($font-middle, $black, bold);
       margin: 20px;
@@ -123,7 +125,8 @@
   }
 }
 
-#tdDay, #tdTime {
+#tdDay,
+#tdTime {
   font-size: $font-middle;
   label {
     @include initSize(25px, 25px);
