@@ -7,11 +7,12 @@ import { debounce } from "lodash";
 import { changeNav } from "../../module/bar";
 import { RootState } from "../../module/store";
 import "../../style/Bar.scss";
-
-import Search from "../../source/search.png";
-import Camera from "../../source/camera.png";
-import Account from "../../source/account.png";
-import Home from "../../source/home.png";
+import {
+  VscSearch,
+  VscDeviceCamera,
+  VscAccount,
+  VscHome,
+} from "react-icons/vsc";
 
 export default function Nav(): ReactElement {
   const dispatch = useAppDispatch();
@@ -31,7 +32,7 @@ export default function Nav(): ReactElement {
           id={nav === "search" ? "selected" : "default"}
           onClick={() => goTo("search")}
         >
-          <img src={Search} width="45" alt="search" />
+          <VscSearch size="45" />
         </div>
 
         <div
@@ -39,7 +40,7 @@ export default function Nav(): ReactElement {
           id={nav === "camera" ? "selected" : "default"}
           onClick={() => goTo("camera")}
         >
-          <img src={Camera} width="45" alt="camera" />
+          <VscDeviceCamera size="45" />
         </div>
 
         <div
@@ -47,7 +48,7 @@ export default function Nav(): ReactElement {
           id={nav === "mypage" ? "selected" : "default"}
           onClick={() => goTo("mypage")}
         >
-          <img src={Account} width="45" alt="account" />
+          <VscAccount size="45" />
         </div>
 
         <div
@@ -55,7 +56,7 @@ export default function Nav(): ReactElement {
           id={nav === "home" ? "selected" : "default"}
           onClick={() => goTo("home")}
         >
-          <img src={Home} width="45" alt="Home" />
+          <VscHome size="45" />
         </div>
       </div>
     </div>

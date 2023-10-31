@@ -4,7 +4,7 @@ import { useAppSelector } from "../../util/hooks";
 
 import "../../style/Bar.scss";
 import { RootState } from "../../module/store";
-import Close from "../../source/close.png";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 export default function Top(): ReactElement {
   const top = useAppSelector((state: RootState) => state.bar.top);
@@ -23,7 +23,7 @@ export default function Top(): ReactElement {
     if (top.right === "close") {
       return (
         <div className="rightItem" id="close">
-          <img src={Close} width="30px" alt="close" />
+          <AiOutlineCloseCircle size="30px" />
         </div>
       );
     } else if (top.right === "create") {
