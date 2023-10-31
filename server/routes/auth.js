@@ -21,12 +21,16 @@ router.get(
 
 //카카오 로그아웃
 router.get("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    req.logout();
-    res.send({
-      status: "OK",
-      code: 200,
-    });
+  req.logout((err) => {
+    req.session.destroy();
+    if (err) {
+      res.redirect("/");
+    } else {
+      res.send({
+        status: "OK",
+        code: 200,
+      });
+    }
   });
 });
 

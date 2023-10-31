@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
-    origin: true,
+    origin: process.env.REACT_APP_FRONT,
     credentials: true,
   })
 );
