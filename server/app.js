@@ -39,29 +39,24 @@ app.use(
 );
 
 //redis
-const redisClient = redis
-  .createClient({
-    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
-    password: process.env.REDIS_PASSWORD,
-  })
-  .on("error", (err) => console.log("Redis Client Error", err))
-  .connect();
-const redisStore = connectRedis({
-  client: redisClient,
-  prefix: "pharm:",
+const redisClient = redis.createClient({
+  url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+  password: process.env.REDIS_PASSWORD,
 });
-app.use(
-  session({
-    store: redisStore,
-    resave: false,
-    saveUninitialized: true,
-    secret: process.env.COOKIE_SECRET,
-    cookie: {
-      httpOnly: true,
-      secure: false,
-    },
-  })
-);
+const redisStore = connectRedis(session);
+app.use(cookieParser(process.env.COOKIE_SECRET));
+const sessionOption = {
+  resave: false,
+  saveUninitialized: true,
+  secret: process.env.COOKIE_SECRET,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+  },
+  store: new redisStore({
+    client: redisClient,
+  }),
+};
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 if (process.env.NODE_ENV === "production") {
@@ -71,6 +66,7 @@ if (process.env.NODE_ENV === "production") {
 } else {
   app.use(morgan("dev"));
 }
+app.use(session(sessionOption));
 app.use(passport.initialize()); //req 객체에 passport 설정 심는 middleware
 app.use(passport.session()); //req.session 객체에 passport 정보 저장하는 middleware
 

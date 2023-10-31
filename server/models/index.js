@@ -1,13 +1,12 @@
-const Sequelize = require('sequelize');
-const Schedule = require('./schedule.js');
-const User = require('./user.js');
+const Sequelize = require("sequelize");
+const Schedule = require("./schedule.js");
+const User = require("./user.js");
 
-//const env = process.env.NODE_ENV || 'development';
-const { development } = require('../config/config.js');
-//config[env];
+const env = process.env.NODE_ENV || "development";
+const dbConfig = require("../config/config.js");
 const db = {};
 
-const sequelize = new Sequelize(development.database, development.username, development.password, development);
+const sequelize = new Sequelize(dbConfig[env]);
 db.sequelize = sequelize;
 
 db.Schedule = Schedule;
