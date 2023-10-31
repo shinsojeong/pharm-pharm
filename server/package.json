@@ -1,0 +1,52 @@
+{
+  "name": "pharm-pharm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinsojeong/pharm-pharm.git"
+  },
+  "author": "shinsojeong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shinsojeong/pharm-pharm/issues"
+  },
+  "homepage": "https://github.com/shinsojeong/pharm-pharm#readme",
+  "dependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "axios": "^1.5.0",
+    "babel-loader": "^8.2.5",
+    "buffer": "^6.0.3",
+    "connect-redis": "^6.1.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "express-session": "^1.17.2",
+    "helmet": "^5.0.2",
+    "history": "^5.3.0",
+    "hpp": "^0.2.3",
+    "html-webpack-plugin": "^5.5.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "os-browserify": "^0.3.0",
+    "passport": "^0.6.0",
+    "passport-kakao": "^1.0.1",
+    "path-browserify": "^1.0.1",
+    "redis": "^3.1.2",
+    "sequelize": "^6.19.0",
+    "stream-browserify": "^3.0.0",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "babel-node": "0.0.1-security",
+    "nodemon": "^2.0.15",
+    "process": "^0.11.10"
+  }
+}
