@@ -1,7 +1,10 @@
-declare namespace NodeJS {
-  interface ProcessEnv {
-    readonly NODE_ENV: "development" | "production" | "test";
-    readonly PUBLIC_URL: string;
+declare global {
+  declare namespace NodeJS {
+    interface ProcessEnv {
+      readonly NODE_ENV: "development" | "production" | "test";
+      readonly PUBLIC_URL: string;
+      readonly REACT_APP_SERVER: string;
+    }
   }
 }
 

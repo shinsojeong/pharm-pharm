@@ -7,7 +7,7 @@
     "build-dev": "tsc && webpack --config webpack.config.js --mode=development",
     "build": "tsc && webpack --config webpack.config.js --mode=production"
   },
-  "proxy": "https://port-0-server-euegqv2llodnudy4.sel5.cloudtype.app/",
+  "proxy": "https://port-0-server-euegqv2llodnudy4.sel5.cloudtype.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shinsojeong/pharm-pharm.git"

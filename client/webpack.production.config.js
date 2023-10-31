@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
-const dotenv = require("dotenv-webpack");
+const dotenv = require("dotenv");
 const webpackProvidePlugin = require("webpack-stream").webpack.ProvidePlugin;
 
 module.exports = {
@@ -55,6 +55,8 @@ module.exports = {
     new webpackProvidePlugin({
       process: "process/browser",
     }),
-    new dotenv(),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
   ],
 };
