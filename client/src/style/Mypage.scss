@@ -1,0 +1,17 @@
+@import "./Valiables.scss";
+
+#mypage {
+  text-align: center;
+  #profile {
+    @include marginPadding(0 auto, 40px 0px 30px 0px);
+    @include initFont($font-x-small, $font-title, bold);
+    width: 80%;
+    text-align: center;
+  }
+  #logout {
+    @include marginPadding(10px, 20px);
+    @include initFont($font-x-small, $white, bold);
+    border-radius: 10px;
+    background-color: $back1;
+  }
+}

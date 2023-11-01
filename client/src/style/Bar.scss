@@ -1,0 +1,73 @@
+@import "./Valiables.scss";
+
+.top {
+  @include initSize(100%, $height-top, 0);
+  padding-top: 15px;
+  background-color: $back1;
+  position: fixed;
+  #left,
+  #center,
+  #right {
+    height: $height-top;
+    float: left;
+    * {
+      color: $white;
+      text-align: center;
+    }
+  }
+  #left,
+  #right {
+    width: 20%;
+  }
+  #close {
+    height: inherit;
+    svg {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+    }
+  }
+  #center {
+    width: 60%;
+    font-size: $font-title;
+    p {
+      height: $height-top;
+      line-height: $height-top;
+      margin: 0 auto;
+    }
+  }
+}
+
+.nav {
+  @include initSize(100%, 74px, auto, auto, 5px);
+  position: fixed;
+  background-color: none;
+  .navWrap {
+    @include initSize(90%, 56px);
+    @include initBorder(30px, 2px, solid, $back1);
+    margin: 0 auto;
+    background-color: $white;
+    text-align: center;
+    .navItem {
+      @include initSize($height-bottom, $height-bottom, -7px);
+      margin: 0 8px;
+      display: inline-block;
+      position: relative;
+      * {
+        margin-top: 5px;
+      }
+    }
+    #selected {
+      @include initBorder(37px, 7px, solid, $back1);
+      background-color: $back1;
+      svg {
+        color: $white;
+      }
+    }
+    #default {
+      svg {
+        color: $back1;
+      }
+    }
+  }
+}

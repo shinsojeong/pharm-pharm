@@ -1,0 +1,26 @@
+@import "./Valiables.scss";
+
+#camera {
+  text-align: center;
+  #inputDiv {
+    margin-top: 170px;
+    #fileBtn {
+      @include initFont($font-x-small, $white, bold);
+      padding: 20px;
+      background-color: $back1;
+      border-radius: 10px;
+    }
+    #inputFile {
+      display: none;
+    }
+  }
+  #messages {
+    margin-top: 60px;
+    img {
+      padding: 0;
+    }
+  }
+  img {
+    padding-top: 60px;
+  }
+}

@@ -1,0 +1,84 @@
+@import "./Valiables.scss";
+
+.login {
+  @include initSize(100%, 100vh);
+  background-color: #ffaa31;
+  text-align: center;
+  #logo {
+    width: 50%;
+    display: inline-block;
+    padding: 0 25%;
+    margin: 40% 0 40% 0;
+  }
+  a {
+    height: 45px;
+  }
+}
+
+#startContents {
+  text-align: center;
+  #todayList {
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid $gray;
+    #nSchedule {
+      text-align: center;
+      margin-bottom: 10px;
+      #message {
+        margin: 0;
+      }
+    }
+    #ySchedule {
+      text-align: center;
+      .todayListItem {
+        padding: 1px 10px;
+        text-overflow: ellipsis;
+        * {
+          display: inline-block;
+          margin: 0 auto;
+        }
+        #mediName {
+          @include initSize(73%, 30px);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        #mediContent {
+          width: 27%;
+          text-align: right;
+          float: right;
+        }
+      }
+    }
+  }
+  #calendar {
+    #monthPick {
+      text-align: center;
+      margin: 10px auto;
+      span {
+        margin: 0 10px;
+      }
+      .calendarBtn {
+        @include initSize(25px, 25px);
+        @include initBorder(30px, 0, none);
+        @include initFont($font-x-small, $white, bolder);
+        background-color: $back1;
+      }
+    }
+    #calendarTable {
+      margin: 0 auto;
+      text-align: center;
+      td {
+        @include initSize(40px, 40px);
+      }
+      #tdRed {
+        background-color: $back1;
+        color: $white;
+      }
+      #tdGray {
+        background-color: $gray;
+        color: $white;
+      }
+    }
+  }
+}

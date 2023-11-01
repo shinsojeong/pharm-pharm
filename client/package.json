@@ -1,0 +1,73 @@
+{
+  "name": "pharm-pharm-client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --open",
+    "build-dev": "tsc && webpack --config webpack.config.js --mode=development",
+    "build": "tsc && webpack --config webpack.config.js --mode=production"
+  },
+  "proxy": "https://port-0-server-euegqv2llodnudy4.sel5.cloudtype.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinsojeong/pharm-pharm.git"
+  },
+  "author": "shinsojeong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shinsojeong/pharm-pharm/issues"
+  },
+  "homepage": "https://github.com/shinsojeong/pharm-pharm#readme",
+  "dependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.5.0",
+    "babel-loader": "^8.2.5",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "css-loader": "^6.7.1",
+    "dotenv": "^16.0.0",
+    "dotenv-webpack": "^7.1.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "moment": "^2.29.3",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-icons": "^4.11.0",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
+    "sass": "^1.67.0",
+    "sass-loader": "^13.3.2",
+    "stream-browserify": "^3.0.0",
+    "style-loader": "^3.3.1",
+    "tesseract.js": "^2.1.5",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-stream": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.198",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-redux": "^7.1.24",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/redux-devtools-extension": "^2.13.2",
+    "@types/redux-persist": "^4.3.1",
+    "@types/redux-thunk": "^2.1.32",
+    "babel-node": "0.0.1-security",
+    "nodemon": "^2.0.15",
+    "process": "^0.11.10",
+    "redux-devtools-extension": "^2.13.9",
+    "ts-loader": "^9.2.9",
+    "typescript": "^4.6.3"
+  }
+}

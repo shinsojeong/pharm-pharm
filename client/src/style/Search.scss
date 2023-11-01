@@ -1,0 +1,43 @@
+@import "./Valiables.scss";
+
+#search {
+  #searchModule {
+    input[type="text"] {
+      @include initSize(100%, 35px);
+      margin: 5px auto;
+    }
+    button {
+      @include initSize(calc(100% + 6px), 40px);
+      background-color: $back2;
+      color: $white;
+    }
+  }
+  #searchResult {
+    text-align: center;
+    margin-top: 10px;
+    table {
+      width: 100%;
+      padding-top: 20px;
+      border-collapse: separate;
+      border-spacing: 0 7px;
+      th {
+        font-size: $font-middle;
+      }
+      td {
+        font-size: $font-middle;
+        height: 35px;
+        padding: 0 2px;
+      }
+      #btn {
+        color: $white;
+        background-color: $back2;
+        width: 70px;
+        border-radius: 5px;
+      }
+    }
+
+    #notResult {
+      padding-top: 50px;
+    }
+  }
+}
